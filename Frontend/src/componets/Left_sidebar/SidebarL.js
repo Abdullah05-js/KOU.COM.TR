@@ -33,10 +33,12 @@ export const SidebarL = () => {
 
 
     const CreatePostModal = ()=>{
+       document.body.style.overflow = "hidden"
 
     const handleClick = (e)=>{
 
      if(e.target.id === "modal" )
+      document.body.style.overflow = "auto"
       setisOpen(false)
     
     }
