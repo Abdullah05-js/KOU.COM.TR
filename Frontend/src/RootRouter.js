@@ -8,6 +8,7 @@ import MarketApp from './componets/Root/MarketApp'
 import { Market } from './componets/Market/Market';
 import Main from '/home/thodex/Desktop/website/Frontend/src/componets/Content_section/Main.js'
 import { PostPage } from './componets/Content_section/PostPage';
+import { EmailVerify } from './componets/Login_page/EmailVerify';
 export const RootRouter = () => {
   return (
     <>
@@ -33,7 +34,7 @@ export const RootRouter = () => {
 
    
 
-
+        <Route path="verify" element={<EmailVerify/>} />
         <Route path="/" exact element={<Login/>}/>
         <Route path="/register" element={<Register/>}/>
 
