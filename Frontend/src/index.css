@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+body{
+    background-color: black;
+}
+
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+    background-color: black;
+}
+ 
+/* Track */
+::-webkit-scrollbar-track {
+    background: #00000000;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #00ff88;
+    border-radius: 10px;
+    cursor: pointer;
+}
+ 
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #00ff6a;
+}
+
+textarea {
+    resize: none;
+    border-radius: 7px;
+    transition: ease-in;
+    transition-duration: 200ms;
+  }
+
+  textarea:invalid {
+    border:none;
+  }
+  
+  textarea:valid {
+    border-left: 3px solid #00ff88;
+  }
+
+  textarea:focus{
+    outline: none;
+    border-bottom: 3px solid #00ff88;
+  }
+  
+
+  /* the emoji piker  */
+  em-emoji-picker {
+    --background-rgb: 0, 0, 0.1;
+    --border-radius: 24px;
+    --category-icon-size: 24px;
+    --color-border-over: rgba(0, 255, 115);
+    --color-border: rgba(0, 255, 128, 0.05);
+    --font-family: 'Comic Sans MS', 'Chalkboard SE', cursive;
+    --font-size: 20px;
+    --rgb-accent: 255, 255, 255;
+    --rgb-background: 0, 0, 0;
+    --rgb-color: 0, 255, 170;
+    --rgb-input:  0, 0, 0;
+
+
+    height: 50vh;
+    min-height: 400px;
+    max-height: 800px;
+  }
+
