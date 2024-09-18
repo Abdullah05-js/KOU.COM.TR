@@ -19,6 +19,7 @@ export const RootRouter = () => {
         <Route path="Search" element={<Main/>} />
         <Route path="Messages" element={<Main/>} />
         <Route path="Profile" element={<Profile/>} />
+        <Route path=":id" element={<Main/>} />
 
         </Route>
         

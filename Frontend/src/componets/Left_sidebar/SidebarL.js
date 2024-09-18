@@ -30,10 +30,13 @@ export const SidebarL = () => {
   
   const User = JSON.parse(data)
 
-
+  const handleModelOpen = () =>{
+    document.body.style.overflow= "hidden"
+    setisOpen(true)
+  }
 
     const CreatePostModal = ()=>{
-       document.body.style.overflow = "hidden"
+     
 
     const handleClick = (e)=>{
 
@@ -46,7 +49,7 @@ export const SidebarL = () => {
   
     return(   
     <div backdrop={"blur"}  className={`${isOpen ? "flex justify-center items-center fixed top-0 left-0 backdrop-blur-sm   z-50 w-screen min-h-screen " : "hidden"}  `} id='modal' onClick={handleClick} >
-      <div className=" flex flex-col justify-center items-center bg-black border-4 border-green-300 rounded max-h-96 min-w-[700px]" >
+      <div className=" flex flex-col justify-center items-center bg-black border-2 border-green-300 rounded max-h-96 min-w-[700px]" >
        
             <h1 className=" text-white font-extrabold text-2xl ">Create Post</h1>
             <div className='overflow-auto'>
@@ -75,7 +78,7 @@ export const SidebarL = () => {
           <li><Button color="primary" variant="light" startContent={<Badge content={"100"}  color="success" variant="solid" placement="top-right" ><MessagesIcon/></Badge>} size='lg' className=" text-3xl mb-8 text-white hover:bg-white  transition ease-in-out duration-1000 hover:translate-x-6 h-16" >Messages</Button></li>
           <li><Link to={"/home/profile"}><Button color="primary" variant="light" startContent={<Badge content={"5"}  color="success" variant="solid" placement="top-right" ><ProfileIcon/></Badge>} size='lg' className=" text-3xl mb-8  text-white hover:bg-white  transition ease-in-out duration-1000 hover:translate-x-6 h-16">Profile</Button></Link></li>
           <li><Button color="primary" variant="light" startContent={<Badge content={"5"}  color="success" variant="solid" placement="top-right" ><MarketIcon/></Badge>} size='lg' className=" text-3xl mb-8  text-white hover:bg-white  transition ease-in-out duration-1000 hover:translate-x-6  h-16" >Market</Button></li>
-          <li><Button  variant="shadow" startContent={<PostIcons/>} size='lg' className=" text-3xl mb-8   text-white bg-green-500  font-bold text-center ml-4" onClick={()=>{setisOpen(true)}}>Post</Button></li>
+          <li><Button  variant="shadow" startContent={<PostIcons/>} size='lg' className=" text-3xl mb-8   text-white bg-green-500  font-bold text-center ml-4" onClick={handleModelOpen}>Post</Button></li>
         </ul>
       </div>
 

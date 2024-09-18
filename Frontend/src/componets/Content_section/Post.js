@@ -7,8 +7,12 @@ import { useState } from 'react'
 import { Button } from '@nextui-org/button'
 import { LikeIcon ,CommentIcon,ShareIcon} from '../../svgs/Icon'
 import { PostPage } from './PostPage'
+import { useNavigate } from "react-router-dom";
+
 
 export const Post = ({KEY,src,tag,name,content,likes,comments,shares,views,body_image,posted_at}) => {
+
+  const navigate = useNavigate()
 
   const [isOpen,setisOpen] = useState(false)
 
@@ -16,6 +20,7 @@ export const Post = ({KEY,src,tag,name,content,likes,comments,shares,views,body_
 
   const handleModelOpen = ()=>{
     document.body.style.overflow = "hidden"
+     navigate(`/home/${KEY}`)
     setisOpen(true)
   }
 
@@ -24,9 +29,11 @@ export const Post = ({KEY,src,tag,name,content,likes,comments,shares,views,body_
 
     const handleClick = (e)=>{
 
+
      if(e.target.id === "modal" )
      {
       document.body.style.overflow = "auto"
+       navigate(`/home`)
       setisOpen(false)
      }
     
@@ -39,7 +46,7 @@ export const Post = ({KEY,src,tag,name,content,likes,comments,shares,views,body_
        
             
             <div>
-               <PostPage KEY={KEY}/>
+               <PostPage />
             </div>
      
       
