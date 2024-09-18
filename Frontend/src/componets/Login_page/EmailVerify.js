@@ -19,23 +19,32 @@ export const EmailVerify = () => {
     const inputs = document.querySelectorAll("input")
      
 
-        const controler = () =>{
+        const controller = () =>{
           
                   if(e.target.id !== "3")
                   {
                       inputs[Number(e.target.id)+1].focus() 
-                      const NewOtp = [...Otp]
-                      NewOtp.push(e.target.value)
+                    
+                      const NewOtp = [...Otp,e.target.value]
+                      
                       setOtp(NewOtp) 
+
+                     
                   }
                   else
-                    checkOTP()
+                    {
+                      const NewOtp = [...Otp,e.target.value]
+                      
+                      setOtp(NewOtp) 
+                      
+                      checkOTP()
+                    }
                 
               
                 
         }
 
-        e.target.value.length>1 ? e.target.value = "" : controler()
+        e.target.value.length>1 ? e.target.value = "" : controller()
         
         //better then all the tutorials on youtube lol made by ABDULLAH HAN
                     
