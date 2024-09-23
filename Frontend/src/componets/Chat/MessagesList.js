@@ -4,21 +4,24 @@ export const MessagesList = () => {
 
 
     const  data = {
-        messages:[{content:"dbttbe",direction:false,time:""},{content:"636ttbe",direction:false,time:""},{content:"dbttbe",direction:true,time:""},{content:"dbttbe",direction:false},{content:"dbttbe",direction:true},{content:"dbttbe",direction:true},{content:"dbttbe",direction:false},{content:"dbttbe",direction:true}]
+        requestSender:"345345345",
+        messages:[{content:"dbttbe",time:"",id:"345345345"},{content:"636ttbe",time:"",id:"345345343"},{content:"dbttbe",time:"",id:"345345345"},{content:"dbttbe",id:"345345343"},{content:"dbttbe",id:"345345345"},{content:"dbttbe",id:"345345345"},{content:"dbttbe",id:"345345343"},{content:"dbttbe",id:"345345345"}]
     }
 
 
     const messagesList = data.messages.map((e)=>{
-       
-        return   <Message direction={e.direction} content={e.content} />
+
+        if(data.requestSender === e.id)
+            return   <Message direction={true} content={e.content} />
+        else
+        return   <Message direction={false} content={e.content} />
+
     })
 
   return (
     <div className='flex flex-col  min-w-[672px] h-96 gap-3 mt-2'>
         
     {messagesList}
-   
-
    
     </div>
   )
