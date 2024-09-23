@@ -9,6 +9,8 @@ import { Market } from './componets/Market/Market';
 import Main from '/home/thodex/Desktop/website/Frontend/src/componets/Content_section/Main.js'
 import { PostPage } from './componets/Content_section/PostPage';
 import { EmailVerify } from './componets/Login_page/EmailVerify';
+import { Chat } from './componets/Chat/Chat';
+import ChatApp from './componets/Root/ChatApp';
 export const RootRouter = () => {
   return (
     <>
@@ -20,6 +22,13 @@ export const RootRouter = () => {
         <Route path="Messages" element={<Main/>} />
         <Route path="Profile" element={<Profile/>} />
         <Route path=":id" element={<Main/>} />
+
+        </Route>
+
+
+        <Route path="/chat" element={<ChatApp/>}>
+        <Route index element={<Chat/>} />
+        <Route path=":id" element={<Chat/>} />
 
         </Route>
         

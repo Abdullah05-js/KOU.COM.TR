@@ -12,11 +12,12 @@ app.use(cors());
 
 const connect = async () => {
 try{
+    console.log("am in")
     await mongoose.connect(process.env.MONGO_URL)
     console.log("connected to mongodb")
 }
 catch(error){
-    throw error
+    console.log("error from mongo:------------",error.message)
 }
 
 }
@@ -29,6 +30,8 @@ app.use("/api", mainRoute);
 
 
 app.listen(process.env.PORT,async ()=>{
+
+    console.log("am in2")
   await connect()
     console.log(`server working on ${process.env.PORT} port `)
 })
