@@ -2,11 +2,15 @@ import React from 'react'
 import Ferdi from "/home/thodex/Desktop/website/Frontend/src/images/GSIVyYDWIAAXS5m.jpeg"
 import { Avatar } from '@nextui-org/avatar'
 import { MessagesList } from './MessagesList'
+import io from "socket.io-client"
+import { Messageİnput } from './Messageİnput'
+const socket = io("http://localhost:5000")
 
 export const Chat = () => {
+
   return (
   
-       <div className=" min-w-[672px] h-screen">
+       <div className="flex flex-col justify-between min-w-[672px] h-screen">
 
         <div className="sticky top-0 z-50 flex  flex-row justify-center items-center gap-10 bg-black  border-b-2 border-green-300 p-4 h-20 " >
 
@@ -19,10 +23,15 @@ export const Chat = () => {
         </div>
 
 
-
+       
         <MessagesList/>
+      
+      
 
-
+      
+        <Messageİnput/>
+       
+        
 
       </div>
     

@@ -13,7 +13,7 @@
   
   /* Handle */
   #room::-webkit-scrollbar-thumb {
-    background: #00ff88;
+    background: #000000;
     border-radius: 10px;
     cursor: pointer;
   }

@@ -1,8 +1,7 @@
 
 import React from 'react'
 import { useState} from 'react'
-import Picker from '@emoji-mart/react'
-import data from "@emoji-mart/data"
+import { useRef,useEffect} from 'react'
 
 export const TextArea = ({isOn,SetisOn}) => {
 
@@ -10,10 +9,17 @@ export const TextArea = ({isOn,SetisOn}) => {
 
   const [TextValue,setTextValue] = useState("")
   
- 
+  const ref = useRef()
+
+    useEffect(()=>{
+      ref.current.focus()
+    },[])
+
+
       return (
         <>
         <textarea 
+        ref={ref}
         value={TextValue}
         cols={"40"} 
         rows={`${Row}`}
