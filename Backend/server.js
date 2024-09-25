@@ -32,7 +32,7 @@ app.use("/api", mainRoute);
 app.listen(process.env.PORT,async ()=>{
 
     console.log("am in2")
-  await connect()
+    await connect()
     console.log(`server working on ${process.env.PORT} port `)
 })
 

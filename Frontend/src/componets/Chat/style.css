@@ -1,0 +1,25 @@
+
+/* width */
+#room::-webkit-scrollbar {
+    width: 5px;
+    height: 10px;
+    background-color: black;
+  }
+  
+  /* Track */
+  #room::-webkit-scrollbar-track {
+    background: #00000000;
+  }
+  
+  /* Handle */
+  #room::-webkit-scrollbar-thumb {
+    background: #00ff88;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+  
+  /* Handle on hover */
+  #room::-webkit-scrollbar-thumb:hover {
+    background: #00ff6a;
+  }
+  
