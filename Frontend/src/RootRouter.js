@@ -17,6 +17,7 @@ export const RootRouter = () => {
     <Routes>
 
         <Route path="/home" element={<App/>}>
+
         <Route index element={<Main/>} />
         <Route path="Search" element={<Main/>} />
         <Route path="Messages" element={<Main/>} />
@@ -27,6 +28,7 @@ export const RootRouter = () => {
 
 
         <Route path="/chat" element={<ChatApp/>}>
+
         <Route index element={<Chat/>} />
         <Route path=":id" element={<Chat/>} />
 
@@ -34,12 +36,14 @@ export const RootRouter = () => {
         
 
         <Route path="/market" element={<MarketApp/>}>
+
         <Route index element={<Market/>}/>
         <Route path="Search" element={<Main/>} />
         <Route path="Messages" element={<Main/>} />
         <Route path="Profile" element={<Profile/>} />
         <Route path="Market" element={<Main/>} />
         <Route path="Sell" element={<Main/>} />
+        
         </Route>
 
    

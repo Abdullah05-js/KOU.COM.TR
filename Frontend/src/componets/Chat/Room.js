@@ -14,23 +14,19 @@ export const Room = () => {
     }
 
 
+    const PorfileBoxList = data.chats.map((e)=>{
+      
+      return <PersonBox Key={e}  />
+    })
+
+
 
 
     return (
       <div id='room' className="sticky top-0 z-40 flex flex-col justify-start gap-2 items-center min-w-[350px]  h-screen border-l-2 border-solid border-green-300 overflow-y-scroll overflow-x-hidden">
         <div className='mt-1'></div>
-        <PersonBox/>
-        <PersonBox/>
-        <PersonBox/>
-        <PersonBox/>
-        <PersonBox/>
-        <PersonBox/>
-        <PersonBox/>
-        <PersonBox/>
-        <PersonBox/>
-        <PersonBox/>
-        <PersonBox/>
-  
+
+          {PorfileBoxList}
       </div>
     )
 }

@@ -1,12 +1,41 @@
-import React from 'react'
+import React,{useEffect, useState} from 'react'
 import Ferdi from "/home/thodex/Desktop/website/Frontend/src/images/GSIVyYDWIAAXS5m.jpeg"
 import { Avatar } from '@nextui-org/avatar'
 import { MessagesList } from './MessagesList'
 import io from "socket.io-client"
 import { Messageİnput } from './Messageİnput'
-const socket = io("http://localhost:5000")
+import { useParams } from 'react-router-dom'
+
 
 export const Chat = () => {
+  const [message,setmessage] = useState("")
+  const [socket,setSocket] = useState({})
+
+  const Room  = useParams() 
+
+  console.log(Room)
+  useEffect(()=>{
+
+    const id = JSON.parse(localStorage.getItem("data")).UserName
+
+    if(Room.id === undefined || Room.id === "")
+        return
+
+    //here we connect to the scoket and send the room id
+    const socket = io("http://localhost:5000",{query:{room:Room.id,id:id}})
+    setSocket(socket)
+
+    //here we have evenlistiner for any message
+    socket.on("get-message",(message)=>{
+      setmessage(message)
+    })
+
+
+
+    console.log(socket,"the socket")
+
+    return ()=> socket.close()
+  },[Room.id])
 
   return (
   
@@ -24,12 +53,12 @@ export const Chat = () => {
 
 
        
-        <MessagesList/>
+        <MessagesList message={message} id={socket.id} />
       
       
 
       
-        <Messageİnput/>
+        <Messageİnput socket={socket} />
        
         
 

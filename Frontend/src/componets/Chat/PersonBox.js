@@ -1,10 +1,23 @@
 import React from 'react'
 import { Avatar } from '@nextui-org/avatar'
 import Ferdi from "/home/thodex/Desktop/website/Frontend/src/images/GSIVyYDWIAAXS5m.jpeg"
+import { useNavigate } from 'react-router-dom'
 
-export const PersonBox = () => {
+
+
+export const PersonBox = ({Key}) => {
+
+const navigate = useNavigate()
+
+  const handleChat = ()=>{
+
+    navigate(`/chat/${Key}`)
+
+  }
+
+
   return (
-    <div className='min-h-24 flex flex-col justify-center items-center  min-w-80 overflow-auto cursor-pointer border-2 border-green-500 rounded-xl'>
+    <div onClick={handleChat} className='min-h-24 flex flex-col justify-center items-center  min-w-80 overflow-auto cursor-pointer border-2 border-green-500 rounded-xl'>
 
 
             <div className='flex flex-row justify-center items-center gap-2'>
