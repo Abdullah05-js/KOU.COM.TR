@@ -45,4 +45,54 @@ router.post("/",async (req,res)=>{
     }
 })
 
+
+    // read all 
+router.get("/",async (req,res)=>{
+    try{
+
+      
+        
+        const room = req.query.room
+
+        console.log("THE ROOM ",req.query,req.params)
+
+
+
+      
+
+
+         const newData = await Chat.find({Room:room})
+
+         console.log(newData);
+
+        const Data = {
+            requestSender:"088aa647-6f3a-47ab-b8de-45cbb7562610",
+            Chats:newData[0].Chats
+        }
+
+
+        console.log(Data)
+
+        res.status(200).json(Data);
+
+
+    }catch(err){
+
+        
+        res.status(501).json({"error":err.message});
+
+
+    }
+});
+
+
+
+
+
+
+
+
+
+
+
 module.exports = router

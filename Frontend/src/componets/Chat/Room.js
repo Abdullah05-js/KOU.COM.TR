@@ -31,7 +31,7 @@ export const Room = () => {
       }
     )
     .then((Response)=>{
-          console.log("respone for room list-------",Response)
+
            setRoomArray(Response.data)
       
     })

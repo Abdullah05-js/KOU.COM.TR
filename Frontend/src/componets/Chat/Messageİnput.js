@@ -4,18 +4,23 @@ import { Button } from '@nextui-org/button'
 import {PostIcons} from '../../svgs/Icon'
 import { TextArea } from '../Content_section/TextArea'
 import { useRef } from 'react'
+import { useContext } from 'react'
+import { socketProvider } from '../Root/ChatApp'
+import { useParams } from 'react-router-dom'
 
-export const Messageİnput = ({socket}) => {
-
+export const Messageİnput = () => {
+  const socket = useContext(socketProvider)
   const [message,setmessage] = useState("")
-   
+  const Roomİd  = useParams() 
 
+
+ 
 
   const handleMessage = ()=>{
     const localToken = JSON.parse(localStorage.getItem("data")).token
 
     if(message !=="")
-      socket.emit("send-message",{content:message,token:localToken})
+      socket.emit("send-message",{content:message,token:localToken,Room:Roomİd.id})
   }
 
   return (
