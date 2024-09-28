@@ -60,7 +60,7 @@ export const Register = () => {
 
 
         useEffect(()=>{
-              setTimeout(() => {
+            const timeout =   setTimeout(() => {
                  if( Words === WordsArray[0])
                 {  
                     setWords(WordsArray[1])
@@ -75,7 +75,12 @@ export const Register = () => {
                 }
                 
                  },3000 );
-                })
+
+
+
+
+                 return ()=>{clearTimeout(timeout)}
+                },[Words])
 
 
                 const handleFile = ()=>{

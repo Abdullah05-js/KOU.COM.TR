@@ -12,10 +12,10 @@ export const Messageİnput = ({socket}) => {
 
 
   const handleMessage = ()=>{
-    const localİd = JSON.parse(localStorage.getItem("data")).UserName
+    const localToken = JSON.parse(localStorage.getItem("data")).token
 
     if(message !=="")
-      socket.emit("send-message",{content:message,id:localİd})
+      socket.emit("send-message",{content:message,token:localToken})
   }
 
   return (

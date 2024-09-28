@@ -3,6 +3,10 @@ const router = express.Router()
 const Posts = require("../Modules/Posts.js")
 const jwt = require("jsonwebtoken")
 
+
+
+// to get all the posts the token owner have 
+
 router.get("/",async (req,res) => {
  try{
     const token = req.query.token

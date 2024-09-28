@@ -16,13 +16,12 @@ export const Chat = () => {
   console.log(Room)
   useEffect(()=>{
 
-    const id = JSON.parse(localStorage.getItem("data")).UserName
 
     if(Room.id === undefined || Room.id === "")
         return
 
     //here we connect to the scoket and send the room id
-    const socket = io("http://localhost:5000",{query:{room:Room.id,id:id}})
+    const socket = io("http://localhost:5000",{query:{room:Room.id}})
     setSocket(socket)
 
     //here we have evenlistiner for any message

@@ -1,20 +1,56 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import { PersonBox } from './PersonBox'
 import "./style.css"
+import axios from 'axios'
+
+
+
+let cancelAxios = null
 export const Room = () => {
 
-    // const [ChatArray,setChatArray] = useState([{id:"4353535",chats:[id]}])
+     const [RoomArray,setRoomArray] = useState([{id:"4353535",Rooms:[]}])
 
 
-    const data = {
-      rquestSneder : "235345354",
+    // const data = {
+    //   rquestSneder : "235345354",
 
-      //the string in the chats i the chat id 
-      chats:["3242","23552","2532525"]
+    //   //the string in the chats i the chat id 
+    //   chats:["3242","23552","2532525"]
+    // }
+
+
+    useEffect( ()=> {
+
+      const localToken = JSON.parse(localStorage.getItem("data")).token
+                 
+     axios.get(`http://localhost:5000/api/rooms` , {params:{"token":localToken}},
+      {
+        cancelToken: new axios.CancelToken((c)=> {
+          cancelAxios = c
+        })
+      }
+    )
+    .then((Response)=>{
+          console.log("respone for room list-------",Response)
+          // setRoomArray(Response)
+      
+    })
+    .catch((error)=>{
+
+      // console.log(error.response.data.error)
+
+    })
+
+   
+    return () => {
+      console.log("cancleing ")
+      cancelAxios()
     }
+                 
+ 
+          },[])
 
-
-    const PorfileBoxList = data.chats.map((e)=>{
+    const PorfileBoxList = RoomArray.chats.map((e)=>{
       
       return <PersonBox Key={e}  />
     })

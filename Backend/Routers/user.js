@@ -43,8 +43,9 @@ res.status(201).json({
 
 
 router.post("/login",async(req,res) => {
-const {email,password,} = req.body
-console.log(req.body)
+const {email,password} = req.body
+
+console.log(req.body);
 
 // const user = await Users.findOneAndUpdate({email:email},{token:token})
 const user = await Users.findOne({email})

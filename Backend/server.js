@@ -3,6 +3,7 @@ const app = express();
 const mongoose = require("mongoose");
 const http = require("http")
 const dotenv = require("dotenv");
+const jwt = require("jsonwebtoken")
 const cors = require("cors");
 const mainRoute = require("./Routers/index.js")
 const server = http.createServer(app);
@@ -18,6 +19,7 @@ dotenv.config()
 
 
 app.use(express.json())
+
 app.use(cors());
 
 const connect = async () => {
@@ -43,7 +45,7 @@ app.use("/api", mainRoute);
     server.listen(process.env.PORT,async ()=>{
 
     console.log("am in2")
-    // await connect()
+     await connect()
     console.log(`server working on ${process.env.PORT} port `)
 })
 
@@ -71,11 +73,17 @@ io.on('connection', (socket) => {
      socket.join(socket.handshake.query.room)
     
     socket.on("send-message",async (message)=>{
-        data.messages.push(message)
+
+
+        const encode = jwt.verify(message.token,process.env.JWT_KEY)
+
+        const newMessage = {content:message.content,id:encode.id}
+        // data.messages.push(message)
         
-        await Chat.findOneAndUpdate(
+      const updatedMessages =   await Chat.findOneAndUpdate(
             {Room:socket.handshake.query.room},
-            {$push:{Chat:[message]}},
+            {$push:{Chat:[newMessage]}},
+            {new:true},
             (err,result)=>{
                 if(err)
                     console.log("error from update",err)
@@ -87,8 +95,8 @@ io.on('connection', (socket) => {
     
 
 
-        console.log(data)
-        io.to(socket.handshake.query.room).emit("get-message",data)
+     
+        io.to(socket.handshake.query.room).emit("get-message",updatedMessages)
     })
 
     socket.on('disconnect', () => {
@@ -100,3 +108,6 @@ io.on('connection', (socket) => {
 
 
   });
+
+
+//   when need to intgerat zod in the project for validaition

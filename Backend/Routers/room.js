@@ -11,7 +11,12 @@ router.get("/",async (req,res)=>{
     try{
 
 
-        const {id} = req.query.id;
+
+        const {token} = req.query.token;
+
+
+
+        const id = jwt.verify(token,process.env.JWT_KEY)
 
         const RoomsData = await Room.find({id:id});
 
