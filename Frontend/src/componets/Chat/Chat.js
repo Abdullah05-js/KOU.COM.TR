@@ -8,7 +8,6 @@ import { useParams } from 'react-router-dom'
 
 
 export const Chat = () => {
-  const [message,setmessage] = useState("")
   const [socket,setSocket] = useState({})
 
   const Room  = useParams() 
@@ -24,10 +23,6 @@ export const Chat = () => {
     const socket = io("http://localhost:5000",{query:{room:Room.id}})
     setSocket(socket)
 
-    //here we have evenlistiner for any message
-    socket.on("get-message",(message)=>{
-      setmessage(message)
-    })
 
 
 
@@ -52,7 +47,7 @@ export const Chat = () => {
 
 
        
-        <MessagesList message={message} id={socket.id} />
+        {/* <MessagesList socket={socket} /> */}
       
       
 

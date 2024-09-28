@@ -8,12 +8,13 @@ const ChatSchema = mongoose.Schema(
         type:String,
         required:true
     },
-    Chat:[
+    Chats:[
         {
             Content:String,
             id:String
         }
-    ]
+    ],
+    test:String
 
 
 });

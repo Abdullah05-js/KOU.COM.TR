@@ -32,7 +32,7 @@ export const Room = () => {
     )
     .then((Response)=>{
           console.log("respone for room list-------",Response)
-          // setRoomArray(Response)
+           setRoomArray(Response.data)
       
     })
     .catch((error)=>{
@@ -50,9 +50,9 @@ export const Room = () => {
  
           },[])
 
-    const PorfileBoxList = RoomArray.chats.map((e)=>{
+   const PorfileBoxList = RoomArray.map((e,index)=>{
       
-      return <PersonBox Key={e}  />
+       return <PersonBox Key={e.Rooms[index]}  />
     })
 
 

@@ -74,40 +74,37 @@ io.on('connection', (socket) => {
     
     socket.on("send-message",async (message)=>{
 
+       
+
 
         const encode = jwt.verify(message.token,process.env.JWT_KEY)
 
-        const newMessage = {content:message.content,id:encode.id}
+      
+
+        const newMessage = {Content:message.content,id:encode.id}
         // data.messages.push(message)
-        
+        console.log(newMessage);
       const updatedMessages =   await Chat.findOneAndUpdate(
             {Room:socket.handshake.query.room},
-            {$push:{Chat:[newMessage]}},
-            {new:true},
-            (err,result)=>{
-                if(err)
-                    console.log("error from update",err)
-                else
-                console.log("updated",result)
-            }
+            {$push:{Chats:newMessage}},
         );
 
     
-
+        console.log(updatedMessages)
 
      
         io.to(socket.handshake.query.room).emit("get-message",updatedMessages)
     })
 
     socket.on('disconnect', () => {
-      console.log('user disconnected');
-    });
+      console.log('user disconnected')
+    })
 
 
 
 
 
-  });
+  })
 
 
 //   when need to intgerat zod in the project for validaition

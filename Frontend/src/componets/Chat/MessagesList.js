@@ -1,14 +1,10 @@
 import React, { useEffect,useState } from 'react'
 import { Message } from './Message'
 import "./style.css"
-import axios from 'axios'
 
-
-
-let cancelAxios = null
-export const MessagesList = ({message,id}) => {
+export const MessagesList = ({socket}) => {
     
-    const [messages,setmessages] = useState({requestSender:"",messages:[]})
+    const [messages,setmessages] = useState({requestSender:"",messages:[{content:"fbfgb",id:"erg"}]})
 
 
     // const  data = {
@@ -18,17 +14,36 @@ export const MessagesList = ({message,id}) => {
     // }
 
 
+    // useEffect(()=>{
+
+    //     if(message === undefined || message==="" )return
+    //     console.log(message)
+    //     setmessages(message)
+    // },[message])
+
+
+
     useEffect(()=>{
 
-        if(message === undefined || message==="" )return
-
+  
+      //here we have evenlistiner for any message
+      socket.on("get-message",(message)=>{
         setmessages(message)
-    },[message])
+      })
+  
+  
+  
+      console.log(socket,"the socket")
+  
+      return ()=> socket.off("get-message")
+    },[socket])
 
 
 
 
     const messagesList = messages.messages.map((e)=>{
+
+    
        
         if(messages.requestSender === e.id)
             return   <Message direction={true} content={e.content} />

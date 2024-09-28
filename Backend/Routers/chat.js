@@ -25,11 +25,13 @@ router.post("/",async (req,res)=>{
 
         const Room = uuidv4()
 
-        const NewChat = [{content:"hello",id:decode.id}];
+        const Chats = [{Content:"hello",id:decode.id}];
 
-         const newData = new Chat({Room,NewChat})
+        const test = "test"
 
-         await newData.save()
+         const newData = new Chat({Room,Chats,test})
+
+         await newData.save();
 
         res.status(200).json(newData)
 
