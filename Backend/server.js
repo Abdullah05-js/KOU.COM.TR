@@ -42,7 +42,7 @@ app.use("/api", mainRoute);
 
 
 
-    server.listen(process.env.PORT,async ()=>{
+server.listen(process.env.PORT,async ()=>{
 
     console.log("am in2")
      await connect()
