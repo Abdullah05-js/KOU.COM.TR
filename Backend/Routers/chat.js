@@ -53,11 +53,12 @@ router.get("/",async (req,res)=>{
       
         
         const room = req.query.room
+        const token = req.query.token
 
         console.log("THE ROOM ",req.query,req.params)
 
 
-
+         const decode  = jwt.verify(token,process.env.JWT_KEY)
       
 
 
@@ -66,7 +67,7 @@ router.get("/",async (req,res)=>{
          
 
         const Data = {
-            requestSender:"088aa647-6f3a-47ab-b8de-45cbb7562610",
+            requestSender:decode.id,
             Chats:newData[0].Chats
         }
 

@@ -5,6 +5,7 @@ import axios from 'axios'
 
 
 
+
 let cancelAxios = null
 export const Room = () => {
 
@@ -22,6 +23,8 @@ export const Room = () => {
     useEffect( ()=> {
 
       const localToken = JSON.parse(localStorage.getItem("data")).token
+
+      console.log("token",localToken)
                  
      axios.get(`http://localhost:5000/api/rooms` , {params:{"token":localToken}},
       {
@@ -31,7 +34,7 @@ export const Room = () => {
       }
     )
     .then((Response)=>{
-
+         
            setRoomArray(Response.data)
       
     })

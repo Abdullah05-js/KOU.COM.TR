@@ -2,6 +2,8 @@ const express = require("express");
 
 const router = express.Router();
 
+const jwt = require("jsonwebtoken")
+
 const Room = require("../Modules/Rooms");
 
 
@@ -12,17 +14,17 @@ router.get("/",async (req,res)=>{
 
 
 
-        // const {token} = req.query.token;
+        const token = req.query.token;
+        console.log("the tone ",req.query);
 
 
-
-        // const id = jwt.verify(token,process.env.JWT_KEY);
+        const decode  = jwt.verify(token,process.env.JWT_KEY) 
         // console.log(id);
 
-        const RoomsData = await Room.find({id:"088aa647-6f3a-47ab-b8de-45cbb7562610"});
+        const RoomsData = await Room.find({id:decode.id});
 
 
-      
+        console.log(RoomsData);
 
         res.status(200).json(RoomsData);
         

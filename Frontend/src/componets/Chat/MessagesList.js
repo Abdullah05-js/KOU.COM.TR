@@ -19,9 +19,9 @@ export const MessagesList = () => {
 
     useEffect( ()=> {
 
-  
+      const localToken = JSON.parse(localStorage.getItem("data")).token
                  
-     axios.get(`http://localhost:5000/api/chat` ,{params:{"room":Roomİd.id}},
+     axios.get(`http://localhost:5000/api/chat` ,{params:{"room":Roomİd.id,"token":localToken}},
       {
         cancelToken: new axios.CancelToken((c)=> {
           cancelAxios = c
@@ -83,7 +83,7 @@ export const MessagesList = () => {
     const messagesList = messages.map((e)=>{
 
     
-       
+       console.log("chatlise",ChatList.requestSender)
         if(ChatList.requestSender === e.id)
             return   <Message direction={true} content={e.Content} />
         else
