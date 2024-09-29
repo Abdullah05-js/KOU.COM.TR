@@ -63,7 +63,7 @@ router.get("/",async (req,res)=>{
 
          const newData = await Chat.find({Room:room})
 
-         console.log(newData);
+         
 
         const Data = {
             requestSender:"088aa647-6f3a-47ab-b8de-45cbb7562610",
@@ -71,7 +71,7 @@ router.get("/",async (req,res)=>{
         }
 
 
-        console.log(Data)
+ 
 
         res.status(200).json(Data);
 

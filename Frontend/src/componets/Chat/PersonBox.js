@@ -2,7 +2,7 @@ import React from 'react'
 import { Avatar } from '@nextui-org/avatar'
 import Ferdi from "/home/thodex/Desktop/website/Frontend/src/images/GSIVyYDWIAAXS5m.jpeg"
 import { useNavigate } from 'react-router-dom'
-
+import { socket } from './socket'
 
 
 export const PersonBox = ({Key}) => {
@@ -10,7 +10,7 @@ export const PersonBox = ({Key}) => {
 const navigate = useNavigate()
 
   const handleChat = ()=>{
-
+    socket.emit("join-roon",{room:Key})
     navigate(`/chat/${Key}`)
 
   }

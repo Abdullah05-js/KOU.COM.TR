@@ -2,14 +2,11 @@ import React,{useState} from 'react'
 import { Input } from '@nextui-org/input'
 import { Button } from '@nextui-org/button'
 import {PostIcons} from '../../svgs/Icon'
-import { TextArea } from '../Content_section/TextArea'
-import { useRef } from 'react'
-import { useContext } from 'react'
-import { socketProvider } from '../Root/ChatApp'
-import { useParams } from 'react-router-dom'
 
+import { useParams } from 'react-router-dom'
+import { socket } from './socket'
 export const Messageİnput = () => {
-  const socket = useContext(socketProvider)
+
   const [message,setmessage] = useState("")
   const Roomİd  = useParams() 
 

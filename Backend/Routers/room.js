@@ -22,7 +22,7 @@ router.get("/",async (req,res)=>{
         const RoomsData = await Room.find({id:"088aa647-6f3a-47ab-b8de-45cbb7562610"});
 
 
-        console.log(RoomsData);
+      
 
         res.status(200).json(RoomsData);
         

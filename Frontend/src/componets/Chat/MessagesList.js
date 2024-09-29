@@ -1,13 +1,12 @@
 import React, { useEffect,useState } from 'react'
 import { Message } from './Message'
 import "./style.css"
-import { useContext } from 'react'
-import { socketProvider } from '../Root/ChatApp'
+import { socket } from './socket'
 import axios from 'axios'
 import { useParams } from 'react-router-dom'
 let cancelAxios = null
 export const MessagesList = () => {
-    const socket = useContext(socketProvider)
+
     const [messages,setmessages] = useState([{Content:"",id:""}])
     const [ChatList,setChatList] = useState({requestSender:"",Chats:[{Content:"",id:""}]})
     const Roomİd  = useParams() 
@@ -66,7 +65,7 @@ export const MessagesList = () => {
   
       return ()=> socket.off("get-message")
       // return ()=> socket.close()
-    },[socket])
+    },[])
 
 
     console.log("messagw",messages)   

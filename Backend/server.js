@@ -66,15 +66,17 @@ io.on('connection', (socket) => {
     //     messages:[]
     // }
 
-  
-
+    socket.on("join-roon",(room)=>{
+        socket.join(room.room);
+    })
+   
     // const Messages = []
 
     //  socket.join(socket.handshake.query.room)
     
     socket.on("send-message",async (message)=>{
 
-          socket.join(message.Room)
+       
 
 
         const encode = jwt.verify(message.token,process.env.JWT_KEY)
@@ -84,6 +86,8 @@ io.on('connection', (socket) => {
         const newMessage = {Content:message.content,id:encode.id}
         // data.messages.push(message)
         console.log(newMessage);
+
+        
           await Chat.findOneAndUpdate(
             {Room:message.Room},
             {$push:{Chats:newMessage}},
@@ -99,7 +103,7 @@ io.on('connection', (socket) => {
         }
 
      
-        socket.emit("get-message",newUpdatedMessage);
+        io.to("2899920b-3099-4bcb-94f5-6e88660e8ad1").emit("get-message",newUpdatedMessage)
     })
 
     socket.on('disconnect', () => {
