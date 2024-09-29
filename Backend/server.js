@@ -68,49 +68,63 @@ io.on('connection', (socket) => {
 
     socket.on("join-roon",(room)=>{
         socket.join(room.room);
+
+
+
+
+
+
+        socket.on("send-message",async (message)=>{
+
+       
+
+
+            const encode = jwt.verify(message.token,process.env.JWT_KEY)
+    
+          
+    
+            const newMessage = {Content:message.content,id:encode.id}
+            // data.messages.push(message)
+            console.log(newMessage);
+    
+            
+              await Chat.findOneAndUpdate(
+                {Room:message.Room},
+                {$push:{Chats:newMessage}},
+                {new:true}
+            );
+    
+        
+         
+    
+            const newUpdatedMessage = {
+                Content:message.content,
+                id:encode.id
+            }
+    
+         
+            io.to(message.Room).emit("get-message",newUpdatedMessage)
+        })
+    
+        socket.on('disconnect', () => {
+          console.log('user disconnected')
+        })
+    
+    
+
+
+
+
+
+
+
+
     })
    
     // const Messages = []
 
     //  socket.join(socket.handshake.query.room)
     
-    socket.on("send-message",async (message)=>{
-
-       
-
-
-        const encode = jwt.verify(message.token,process.env.JWT_KEY)
-
-      
-
-        const newMessage = {Content:message.content,id:encode.id}
-        // data.messages.push(message)
-        console.log(newMessage);
-
-        
-          await Chat.findOneAndUpdate(
-            {Room:message.Room},
-            {$push:{Chats:newMessage}},
-            {new:true}
-        );
-
-    
-     
-
-        const newUpdatedMessage = {
-            Content:message.content,
-            id:encode.id
-        }
-
-     
-        io.to("2899920b-3099-4bcb-94f5-6e88660e8ad1").emit("get-message",newUpdatedMessage)
-    })
-
-    socket.on('disconnect', () => {
-      console.log('user disconnected')
-    })
-
-
 
 
 
