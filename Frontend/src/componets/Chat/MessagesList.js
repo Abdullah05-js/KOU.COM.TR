@@ -55,6 +55,7 @@ export const MessagesList = () => {
   
       //here we have evenlistiner for any message
       socket.on("get-message",(message)=>{
+        console.log("hi am here")
        
         setmessages((messages)=> [...messages,message])
       })

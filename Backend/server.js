@@ -99,7 +99,7 @@ io.on('connection', (socket) => {
         }
 
      
-        io.to(message.Room).emit("get-message",newUpdatedMessage)
+        socket.emit("get-message",newUpdatedMessage);
     })
 
     socket.on('disconnect', () => {
