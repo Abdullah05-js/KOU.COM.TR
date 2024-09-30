@@ -68,7 +68,7 @@ export const MessagesList = () => {
   
       console.log(socket,"the socket")
   
-      return ()=> socket.off("get-message")
+      return ()=> socket.off("get-message");
       // return ()=> socket.close()
     },[messages])
 
