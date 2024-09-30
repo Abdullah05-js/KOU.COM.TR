@@ -26,7 +26,7 @@ const navigate = useNavigate()
                 {/* <p className="text-gray-400 font-light  " ></p> */}
             </div>
 
-            <h2 className='text-center text-white'>{"lan nerdesin  gel halısahaya"}</h2>
+            <h2 className='text-center text-white'>`"+${"lan nerdesin  gel halısahaya"}+"`</h2>
             
     </div>
   )

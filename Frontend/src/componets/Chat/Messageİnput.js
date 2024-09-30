@@ -16,8 +16,10 @@ export const Messageİnput = () => {
   const handleMessage = ()=>{
     const localToken = JSON.parse(localStorage.getItem("data")).token
 
+    
+    //here we used volatile bc i dont want to stack the messages
     if(message !=="")
-      socket.emit("send-message",{content:message,token:localToken,Room:Roomİd.id})
+      socket.volatile.emit("send-message",{content:message,token:localToken,Room:Roomİd.id})
   }
 
   return (

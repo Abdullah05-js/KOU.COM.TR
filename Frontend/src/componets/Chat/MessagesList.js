@@ -56,7 +56,12 @@ export const MessagesList = () => {
       socket.on("get-message",(message)=>{
         console.log("hi am here")
        
-        setmessages((messages)=> [...messages,message])
+
+        messages[0].id === "" ?   setmessages([message]) :  setmessages((messages)=> [...messages,message]);
+
+
+     
+
       })
   
   
@@ -65,10 +70,19 @@ export const MessagesList = () => {
   
       return ()=> socket.off("get-message")
       // return ()=> socket.close()
-    },[])
+    },[messages])
 
 
-    console.log("messagw",messages)   
+
+      useEffect(()=>{
+        // to focus to the last message when the user send message
+        document.getElementById("room").scrollTo(0,document.getElementById("room").scrollHeight)
+
+      },[messages])
+    
+
+
+       
 
     
     const messagesDBList = ChatList.Chats.map((e)=>{
@@ -94,7 +108,7 @@ export const MessagesList = () => {
   return (
     <div id='room' className='flex flex-col  min-w-[672px] h-screen overflow-y-auto gap-3 mt-2'>
     {ChatList.requestSender !== "" ? messagesDBList : ""}
-    {messages.id !== "" ? messagesList : ""}
+    {messages[0].id !== "" ? messagesList : ""}
    
     </div>
   )
