@@ -7,6 +7,9 @@ const UsersRouter = require("./user.js")
 const profileRouter = require("./profile.js")
 const RoomRouter = require("./room.js")
 const ChatRouter = require("./chat.js")
+const NewChatRouter = require("./NewChat.js")
+
+router.use("/newchat",PostRouter)
 
 router.use("/post",PostRouter)
 

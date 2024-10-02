@@ -6,8 +6,8 @@ import { Register } from './componets/register_page/Register';
 import { Profile } from './componets/profile_page/Profile';
 import MarketApp from './componets/Root/MarketApp'
 import { Market } from './componets/Market/Market';
-import Main from '/home/thodex/Desktop/website/Frontend/src/componets/Content_section/Main.js'
-import { PostPage } from './componets/Content_section/PostPage';
+import Main from "./componets/Content_section/Main.js"
+// import { PostPage } from './componets/Content_section/PostPage';
 import { EmailVerify } from './componets/Login_page/EmailVerify';
 import { Chat } from './componets/Chat/Chat';
 import ChatApp from './componets/Root/ChatApp';

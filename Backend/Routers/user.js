@@ -4,7 +4,7 @@ const { v4: uuidv4 } = require('uuid');
 const jwt = require("jsonwebtoken")
 const router = express()
 const { encrypt, decrypt } = require('node-encryption');
-
+const Room = require("../Modules/Rooms");
 
 // /register 
 router.post("/register",async (req,res) => {
@@ -20,9 +20,12 @@ const date = `${d.getUTCDate()} ${d.getUTCMonth()} ${d.getUTCFullYear()}`
 
  const Password = encrypt(password,process.env.ENCRYPT)
 
+ const Rooms = []
 
+const newRoom = new Room({id,Rooms});
 const newUsers = new Users({id,UserName,email,Password,date,img})
 await newUsers.save()
+await newRoom.save()
 
 
 const token = jwt.sign({id:id},process.env.JWT_KEY,{expiresIn:'7h'})

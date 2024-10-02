@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState ,useEffect,useMemo} from 'react'
 import { WebsiteIcon } from '../../svgs/Icon'
- import Loginİmage from '/home/thodex/Desktop/website/Frontend/src/images/login.png'
+//  import Loginİmage from '/home/thodex/Desktop/website/Frontend/src/images/login.png'
 import { Image } from '@nextui-org/image'
 import { Input } from '@nextui-org/input'
 import { EyeFilledIcon,EyeSlashFilledIcon } from '../../svgs/Icon'
@@ -155,7 +155,7 @@ export const Register = () => {
             </div>  
         <div className="flex flex-col gap-4  h-screen mt-10" >
             <ul>
-                <li><Image src={Loginİmage} isZoomed width={800} isBlurred className='border-2 border-green-300' /></li>
+                <li><Image src={""} isZoomed width={800} isBlurred className='border-2 border-green-300' /></li>
                 <li> <div className='flex flex-row gap-2  mt-10'>
             <h1 className="text-white text-3xl ">FOR A QUARTER CENTURY </h1>
             <h1 className="text-green-300 min-w-52 bg-white text-center text-3xl font-bold ">{Words}</h1>
