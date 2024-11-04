@@ -156,10 +156,10 @@ export const Login = () => {
 
                     <li><h2 className=' font-extrabold text-xl  text-white '>Login:</h2></li>
 
-                    <li> <Input isRequired className='text-white ' value={UserData.email}  isInvalid={isInvalid}  errorMessage="Please enter a valid email" onChange={(e) => { setUserData({...UserData,email:e.target.value})}} type="email" variant={'bordered'} label="Email" placeholder="Enter your email" /></li>
+                    <li> <Input isRequired autoComplete="email" className='text-white ' value={UserData.email}  isInvalid={isInvalid}  errorMessage="Please enter a valid email" onChange={(e) => { setUserData({...UserData,email:e.target.value})}} type="email" variant={'bordered'} label="Email" placeholder="Enter your email" /></li>
 
                        
-                    <li><Input isRequired className='text-white'  value={UserData.password}  onChange={(e) => { setUserData({...UserData,password:e.target.value})}} label="Password" variant="bordered" placeholder="Enter your password" endContent={ <button className="focus:outline-none" type="button" onClick={toggleVisibility}> {isVisible ? (   <EyeSlashFilledIcon className="text-2xl text-default-400 pointer-events-none" />         ) : ( <EyeFilledIcon className="text-2xl text-default-400 pointer-events-none" /> )}       </button> }type={isVisible ? "text" : "password"}/></li>
+                    <li><Input isRequired  autoComplete="current-password" className='text-white'  value={UserData.password}  onChange={(e) => { setUserData({...UserData,password:e.target.value})}} label="Password" variant="bordered" placeholder="Enter your password" endContent={ <button className="focus:outline-none" type="button" onClick={toggleVisibility}> {isVisible ? (   <EyeSlashFilledIcon className="text-2xl text-default-400 pointer-events-none" />         ) : ( <EyeFilledIcon className="text-2xl text-default-400 pointer-events-none" /> )}       </button> }type={isVisible ? "text" : "password"}/></li>
                
                     <li><Button  variant="light"  size='md' className="    font-bold   text-white   ">Forgotten password?</Button></li>
                     
