@@ -11,6 +11,7 @@ import Main from "./componets/Content_section/Main.js"
 import { EmailVerify } from './componets/Login_page/EmailVerify';
 import { Chat } from './componets/Chat/Chat';
 import ChatApp from './componets/Root/ChatApp';
+import Test from './componets/Test/Test.js';
 export const RootRouter = () => {
   return (
     <>
@@ -52,7 +53,7 @@ export const RootRouter = () => {
         <Route path="/" exact element={<Login/>}/>
         <Route path="/register" element={<Register/>}/>
 
-
+        <Route path="/Test" element={<Test/>}/>
     </Routes>
     </>
   )
