@@ -16,7 +16,7 @@ export const Post = ({KEY,src,tag,name,content,likes,comments,shares,views,body_
 
   const [isOpen,setisOpen] = useState(false)
 
-  const [isFollowed,setisFollowed] = useState(false)
+  const [isFollowed,setisFollowed] = useState(true)
 
   const handleModelOpen = ()=>{
     document.body.style.overflow = "hidden"
@@ -66,9 +66,7 @@ export const Post = ({KEY,src,tag,name,content,likes,comments,shares,views,body_
   return (
     <>
       <CreatePostModal/>
-      <div onClick={handleModelOpen}>
-
-      <Card  className="p-3 border-b-2 border-green-300 rounded-none bg-black cursor-pointer" >
+      <Card  className=" flex flex-col gap-4 p-3 border-b-2 border-green-300 rounded-none bg-black cursor-pointer" >
       <CardHeader className="flex gap-3 justify-between items-center ">
 
         <div className="flex gap-3">
@@ -96,55 +94,62 @@ export const Post = ({KEY,src,tag,name,content,likes,comments,shares,views,body_
           }     
         </div>
 
-        {isFollowed ? <Button  variant="shadow" size='md' className=" text-2xl  text-white bg-green-500  font-bold text-center">Follow</Button> : ""}
+        {isFollowed ? <Button   size='md' className=" text-xl  text-white bg-transparent font-semibold border-2 border-primary text-center">Follow</Button> : ""}
 
+       
       </CardHeader>
-      <Divider className="bg-green-300"/>
-      <CardBody className="felx flex-col items-center">
+      <CardBody className='flex flex-wrap gap-2 justify-center items-start min-h-14'>
         <p className="text-white max-w-96 overflow-y-auto ">{content}</p>
-        <Image
+        {
+          body_image && (<Image
         alt="Woman listing to music"
-        className="object-cover border-2 border-green-300"
-        height={270}
+        className="object-cover max-h-[800px]"
+       
         src={body_image }
-        width={330}
+       width={670}
         
-      />
+      />)
+        }
       </CardBody>
-      <Divider className="bg-green-300"/>
-      <CardFooter className="flex flex-row gap-3 justify-between">
+     
+  
+     
+      <CardFooter className="flex flex-row gap-3 justify-center items-center  before:bg-white/10 border-white/20  overflow-hidden py-1 before:rounded-xl rounded-large  w-[calc(100%_-_8px)] shadow-small ml-1 ">
 
+    
 
-      <div className="flex flex-row gap-2">
-      <Button isIconOnly  className=" bg-black " aria-label="Like ">
-        <LikeIcon  width={36} height={36} />
+ 
+
+        <div className='flex flex-row justify-center items-center'>
+        <Button isIconOnly  className=" bg-transparent " aria-label="Like ">
+        <LikeIcon  width={24} height={24} />
         </Button>
+        <Chip   className="font-bolder  text-center text-white bg-transparent">{likes}</Chip>
+        </div>
+  
 
-        <Button isIconOnly  className="  bg-black "  aria-label="Comment">
-          <CommentIcon width={36} height={36} /> 
-        </Button>
-
-        <Button isIconOnly  className=" bg-black" aria-label="Share">
-          <ShareIcon width={36} height={36}  /> 
-        </Button>
+      <div className='flex flex-row justify-center items-center'>
+        <Button isIconOnly  className="  bg-transparent " onClick={handleModelOpen} aria-label="Comment">
+          <CommentIcon width={24} height={24} />
+        </Button> 
       </div>
 
+   
+
+       <div>
+        <Button isIconOnly  className=" bg-transparent" aria-label="Share">
+          <ShareIcon width={24} height={24}  /> 
+        </Button>
+       </div>
+    
 
 
-      <div  className="flex flex-row gap-2">
-
-      <Chip  color="success" variant="bordered" className="font-bolder text-base text-white ">Likes:{likes}</Chip>
-      <Chip  color="success" variant="bordered" className="font-bolder text-base text-white ">Comments:{comments}</Chip>
-      <Chip  color="success" variant="bordered" className="font-bolder text-base text-white ">Shares{shares}</Chip>
-      <Chip  color="success" variant="bordered" className="font-bolder text-base text-white ">View:{views}</Chip>
-
-      </div>
 
 
 
       </CardFooter>
     </Card>
-    </div>
+   
     </>
   )
 }

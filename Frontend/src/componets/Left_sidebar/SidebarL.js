@@ -10,8 +10,6 @@ import { Card,CardHeader,CardBody} from '@nextui-org/card'
 import {Image} from "@nextui-org/image"
 import {Divider} from "@nextui-org/divider";
 import {Badge} from "@nextui-org/badge";
-import {Tooltip} from "@nextui-org/tooltip";
-import {Chip} from "@nextui-org/chip";
 import { Link } from 'react-router-dom'
 // import Ferdi from '/home/thodex/Desktop/website/src/images/trump.jpeg' 
 import { CreatePost } from '../Content_section/CreatePost'
@@ -71,24 +69,24 @@ export const SidebarL = () => {
     <div className="sticky top-0 z-50 flex flex-col justify-between items-center w-72  px-2  h-screen border-r-2 border-solid border-green-300  ">
       <CreatePostModal/>
       <div className="py-3"><WebsiteIcon /></div>
-      <div className="mb-12">
-        <ul className='p-3'>   
-          <li><Link to={"/home"}k>< Button color="primary" variant="light" startContent={<Badge  content={"99+"} color="success" variant="solid" placement="top-left" ><HomeIcon/></Badge>}   size='lg' className=" text-3xl mb-8    text-white hover:bg-white transition ease-in-out duration-1000 hover:translate-x-6 h-16" >Home</Button></Link></li>
-          <li><Button color="primary" variant="light" startContent={<SearchIcon/>} size='lg' className=" text-3xl mb-8   text-white hover:bg-white  transition ease-in-out duration-1000 hover:translate-x-6 h-16">Search</Button></li>
-          <li><Link to={"/chat"}><Button color="primary" variant="light" startContent={<Badge content={"100"}  color="success" variant="solid" placement="top-right" ><MessagesIcon/></Badge>} size='lg' className=" text-3xl mb-8 text-white hover:bg-white  transition ease-in-out duration-1000 hover:translate-x-6 h-16" >Messages</Button></Link></li>
-          <li><Link to={"/home/profile"}><Button color="primary" variant="light" startContent={<Badge content={"5"}  color="success" variant="solid" placement="top-right" ><ProfileIcon/></Badge>} size='lg' className=" text-3xl mb-8  text-white hover:bg-white  transition ease-in-out duration-1000 hover:translate-x-6 h-16">Profile</Button></Link></li>
-          <li><Button color="primary" variant="light" startContent={<Badge content={"5"}  color="success" variant="solid" placement="top-right" ><MarketIcon/></Badge>} size='lg' className=" text-3xl mb-8  text-white hover:bg-white  transition ease-in-out duration-1000 hover:translate-x-6  h-16" >Market</Button></li>
-          <li><Button  variant="shadow" startContent={<PostIcons/>} size='lg' className=" text-3xl mb-8   text-white bg-green-500  font-bold text-center ml-4" onClick={handleModelOpen}>Post</Button></li>
-        </ul>
-      </div>
+   
+      <div>
+      <ul className='flex flex-col gap-4'>   
+          <li className='transition ease-in-out duration-1000 hover:translate-x-6'><Link to={"/home"}>< Button color="primary" variant="light" startContent={<Badge  content={"99+"} color="success" variant="solid" placement="top-left" ><HomeIcon/></Badge>}   size='lg' className=" text-3xl    text-white   h-16" >Home</Button></Link></li>
+          <li className='transition ease-in-out duration-1000 hover:translate-x-6'><Button color="primary" variant="light" startContent={<SearchIcon/>} size='lg' className=" text-3xl    text-white    h-16">Search</Button></li>
+          <li className='transition ease-in-out duration-1000 hover:translate-x-6'><Link to={"/chat"}><Button color="primary" variant="light" startContent={<Badge content={"100"}  color="success" variant="solid" placement="top-right" ><MessagesIcon/></Badge>} size='lg' className=" text-3xl  text-white   h-16" >Messages</Button></Link></li>
+          <li className='transition ease-in-out duration-1000 hover:translate-x-6'><Link to={"/home/profile"}><Button color="primary" variant="light" startContent={<Badge content={"5"}  color="success" variant="solid" placement="top-right" ><ProfileIcon/></Badge>} size='lg' className=" text-3xl   text-white    h-16">Profile</Button></Link></li>
+          <li className='transition ease-in-out duration-1000 hover:translate-x-6'><Button color="primary" variant="light" startContent={<Badge content={"5"}  color="success" variant="solid" placement="top-right" ><MarketIcon/></Badge>} size='lg' className=" text-3xl  text-white    h-16" >Market</Button></li>
+          <li className='transition ease-in-out duration-1000 hover:translate-x-6'><Button  variant="shadow" startContent={<PostIcons/>} size='lg' className=" text-3xl   text-white bg-green-500  font-bold text-center ml-4" onClick={handleModelOpen}>Post</Button></li>
 
-      <Card className="py-2 min-w-48  max-w-52 mb-16  transition ease-in-out duration-1000 hover:-translate-y-1 bg-black border-2 border-solid border-green-300 rounded-md">
-      <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
+          <li>
+          <Card className="min-w-48  max-w-52 h-36   bg-black border-2 border-solid border-green-300 rounded-md">
+      <CardHeader className=" flex-col items-start ">
     
         <h4 className="font-bold text-large m-1 text-white" >{User.UserName}</h4>
-        <Divider />
+        <Divider className='bg-primary' />
       </CardHeader>
-      <CardBody className="overflow-visible py-2">
+      <CardBody className="overflow-visible py-2 ">
        
         <Image
           isBlurred
@@ -101,7 +99,11 @@ export const SidebarL = () => {
         />
       </CardBody>
     </Card>
+          </li>
+        </ul>
+      </div>
       
+
     </div>
   )
 }
