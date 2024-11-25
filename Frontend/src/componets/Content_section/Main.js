@@ -10,15 +10,16 @@ import FetchData from "./FetchData";
 const Main = () => {
   const [BorderB, SetBorderB] = useState("Explore");
 
-  let { data, error, isError, isLoading, fetchNextPage , isFetchingNextPage} = useInfiniteQuery({
-    queryKey: ["posts"],
-    queryFn: FetchData,
-    retry: 2,
-    initialPageParam: 0,
-    getNextPageParam: (lastpage) => lastpage.nextPage,
-  });
+  let { data, error, isError, isLoading, fetchNextPage, isFetchingNextPage } =
+    useInfiniteQuery({
+      queryKey: ["posts"],
+      queryFn: FetchData,
+      retry: 2,
+      initialPageParam: 0,
+      getNextPageParam: (lastpage) => lastpage.nextPage,
+    });
 
-  console.log(data)
+  console.log(data);
   const Skeleton_model = () => {
     return (
       <div className="flex justify-center items-center p-7">
@@ -30,7 +31,9 @@ const Main = () => {
   useEffect(() => {
     const handleScroll = () => {
       if (
-        window.scrollY + window.innerHeight + 700 >=document.documentElement.scrollHeight) {
+        window.scrollY + window.innerHeight + 700 >=
+        document.documentElement.scrollHeight
+      ) {
         //bittişten 700px önce fetch yapıyoruz
         fetchNextPage();
       }
@@ -73,8 +76,8 @@ const Main = () => {
       <div>
         <CreatePost setPostsArray={data} />
 
-        {isLoading || <Posts  PostsArray={data} />}
-        {isLoading  && Skeleton_model()}
+        {isLoading || <Posts PostsArray={data} />}
+        {isLoading && Skeleton_model()}
         {isFetchingNextPage && Skeleton_model()}
       </div>
     </div>

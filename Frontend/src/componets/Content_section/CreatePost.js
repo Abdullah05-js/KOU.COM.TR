@@ -18,7 +18,7 @@ export const CreatePost = ({ setPostsArray }) => {
 
   const [FilesApi, setFilesApi] = useState([]);
 
-  const [Load,SetLoad] = useState(false);
+  const [Load, SetLoad] = useState(false);
 
   const [isPikerOn, setisPikerOn] = useState(false);
 
@@ -47,7 +47,7 @@ export const CreatePost = ({ setPostsArray }) => {
         setFilesApi([]);
         console.log("from post requestt", Response);
         SetLoad(false);
-       setPostsArray[0].data.unshift(Response.data)
+        setPostsArray[0].data.unshift(Response.data);
       } catch (error) {
         console.log(error);
         navigate("/");
@@ -164,19 +164,21 @@ export const CreatePost = ({ setPostsArray }) => {
               </div>
             </div>
 
-        {
-          Load ? <Spinner/> : (    <Button
-            variant="shadow"
-            startContent={<PostIcons />}
-            size="md"
-            className=" text-3xl mb-8   text-white bg-green-500  font-bold text-center ml-4"
-            onClick={() => {
-              handlePost();
-            }}
-          >
-            Post
-          </Button>)
-        }
+            {Load ? (
+              <Spinner />
+            ) : (
+              <Button
+                variant="shadow"
+                startContent={<PostIcons />}
+                size="md"
+                className=" text-3xl mb-8   text-white bg-green-500  font-bold text-center ml-4"
+                onClick={() => {
+                  handlePost();
+                }}
+              >
+                Post
+              </Button>
+            )}
           </div>
         </div>
       </div>

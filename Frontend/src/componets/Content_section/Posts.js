@@ -5,7 +5,7 @@ import { Spinner } from "@nextui-org/spinner";
 export const Posts = ({ PostsArray }) => {
   const ReturnPosts = PostsArray.pages.map((page) => {
     return page.data.map((e) => {
-      return  (
+      return (
         <Post
           KEY={e._id}
           tag={e.Role}

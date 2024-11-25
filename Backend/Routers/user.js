@@ -5,7 +5,8 @@ const jwt = require("jsonwebtoken");
 const router = express();
 const { encrypt, decrypt } = require("node-encryption");
 const Room = require("../Modules/Rooms");
-
+const OTP = require("../Modules/OTP.js");
+const useGetOTP = require("../Hooks/useGetOTP.js")
 // /register
 router.post("/register", async (req, res) => {
   const { UserName, email, password, img } = req.body;
@@ -18,13 +19,17 @@ router.post("/register", async (req, res) => {
 
   const Password = encrypt(password, process.env.ENCRYPT);
 
+  const OTPKEY = useGetOTP();
+
   const Rooms = [];
 
   const newRoom = new Room({ id, Rooms });
   const newUsers = new Users({ UserName, email, Password, date, img });
+  const newOTP = new OTP({UserId:newUsers._id,OTP:OTPKEY}); 
   await newUsers.save();
   await newRoom.save();
-
+  await newOTP.save();
+  
   const token = jwt.sign({ id: newUsers._id }, process.env.JWT_KEY, {
     expiresIn: "7h",
   });

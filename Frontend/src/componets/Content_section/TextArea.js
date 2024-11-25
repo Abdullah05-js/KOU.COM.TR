@@ -1,47 +1,34 @@
+import React from "react";
+import { useState } from "react";
+import { useRef, useEffect } from "react";
 
-import React from 'react'
-import { useState} from 'react'
-import { useRef,useEffect} from 'react'
+export const TextArea = ({ isOn, SetisOn }) => {
+  const [Row, setRow] = useState(1);
 
-export const TextArea = ({isOn,SetisOn}) => {
+  const [TextValue, setTextValue] = useState("");
 
-  const [Row,setRow] = useState(1)
+  const ref = useRef();
 
-  const [TextValue,setTextValue] = useState("")
-  
-  const ref = useRef()
+  useEffect(() => {
+    ref.current.focus();
+  }, []);
 
-    useEffect(()=>{
-      ref.current.focus()
-    },[])
-
-
-      return (
-        <>
-        <textarea 
+  return (
+    <>
+      <textarea
         ref={ref}
         value={TextValue}
-        cols={"40"} 
+        cols={"40"}
         rows={`${Row}`}
-         className="p-3 mt-10 bg-black text-white"
-         onChange={(e)=>{
-          
-          setTextValue(e.target.value)
-          e.target.value.length+2 >= (Row)*43 ? setRow((v)=>v+1) : console.log()
-
+        className="p-3 mt-10 bg-black text-white"
+        onChange={(e) => {
+          setTextValue(e.target.value);
+          e.target.value.length + 2 >= Row * 43
+            ? setRow((v) => v + 1)
+            : console.log();
         }}
         placeholder="Ders Notu var mı???"
-        >
-    
-        </textarea>
-
-
-
-</>
-      )
-    }
-  
-      
-    
- 
-
+      ></textarea>
+    </>
+  );
+};
