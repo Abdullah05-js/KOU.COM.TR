@@ -12,10 +12,10 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Spinner } from "@nextui-org/spinner";
 
+
 // let validToken = "128202|eg0sxt0FCRa1oBFsP0SVTf7KV5zgPMmWfFnHm7gF"
 export const CreatePost = ({ setPostsArray }) => {
   const navigate = useNavigate();
-
   const [FilesApi, setFilesApi] = useState([]);
 
   const [Load, SetLoad] = useState(false);
@@ -45,9 +45,9 @@ export const CreatePost = ({ setPostsArray }) => {
         setTextValue("");
         setRow(1);
         setFilesApi([]);
-        console.log("from post requestt", Response);
+        console.log("from post requestt",Response.data );
         SetLoad(false);
-        setPostsArray[0].data.unshift(Response.data);
+        setPostsArray(Response.data)
       } catch (error) {
         console.log(error);
         navigate("/");

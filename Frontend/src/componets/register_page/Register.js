@@ -28,7 +28,7 @@ export const Register = () => {
     const [UserData,setUserData] = useState({email:"",password1:"",password2:"",img:""})
 
 
-    const validateEmail = (value) => value.match(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}$/i);
+    const validateEmail = (value) => value.match(/^[0-9]{9}@kocaeli.edu.tr$/i);
 
     const navigate = useNavigate()
 

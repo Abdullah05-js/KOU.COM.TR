@@ -1,38 +1,29 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { CreatePost } from "./CreatePost";
 import { Button } from "@nextui-org/button";
 import { useState } from "react";
 import { Posts } from "./Posts";
 import { useEffect } from "react";
-import { useInfiniteQuery } from "@tanstack/react-query";
 import { Spinner } from "@nextui-org/spinner";
-import FetchData from "./FetchData";
+import { Post } from "./Post";
+import useGetPosts from "./useGetPosts";
+
 const Main = () => {
   const [BorderB, SetBorderB] = useState("Explore");
-
-  let { data, error, isError, isLoading, fetchNextPage, isFetchingNextPage } =
-    useInfiniteQuery({
-      queryKey: ["posts"],
-      queryFn: FetchData,
-      retry: 2,
-      initialPageParam: 0,
-      getNextPageParam: (lastpage) => lastpage.nextPage,
-    });
-
-  console.log(data);
-  const Skeleton_model = () => {
-    return (
-      <div className="flex justify-center items-center p-7">
-        <Spinner label="Loading ....." color="success" labelColor="success" />
-      </div>
-    );
-  };
+  const [CreatedPost,SetCreatedPost] = useState(null);
+  const { data, error, isError, isLoading, fetchNextPage, isFetchingNextPage } =useGetPosts();
+  const Skeleton_model = useCallback(() => (
+    <div className="flex justify-center items-center p-7">
+      <Spinner label="Loading ....." color="success" labelColor="success" />
+    </div>
+  ),[]);
+  
 
   useEffect(() => {
     const handleScroll = () => {
       if (
-        window.scrollY + window.innerHeight + 700 >=
-        document.documentElement.scrollHeight
+        window.scrollY + window.innerHeight  >=
+        document.documentElement.scrollHeight-300
       ) {
         //bittişten 700px önce fetch yapıyoruz
         fetchNextPage();
@@ -74,8 +65,20 @@ const Main = () => {
       </div>
 
       <div>
-        <CreatePost setPostsArray={data} />
-
+        <CreatePost setPostsArray={SetCreatedPost} />
+        {CreatedPost&& <Post
+          KEY={CreatedPost._id}
+          tag={CreatedPost.Role}
+          posted_at={CreatedPost.date}
+          src={CreatedPost.profilePhoto}
+          name={CreatedPost.UserName}
+          content={CreatedPost.content}
+          likes={CreatedPost.likes}
+          comments={CreatedPost.comments}
+          shares={CreatedPost.shares}
+          views={CreatedPost.views}
+          body_image={CreatedPost.img}
+        />}
         {isLoading || <Posts PostsArray={data} />}
         {isLoading && Skeleton_model()}
         {isFetchingNextPage && Skeleton_model()}
