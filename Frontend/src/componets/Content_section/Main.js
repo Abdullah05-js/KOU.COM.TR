@@ -11,7 +11,7 @@ import useGetPosts from "./useGetPosts";
 const Main = () => {
   const [BorderB, SetBorderB] = useState("Explore");
   const [CreatedPost,SetCreatedPost] = useState(null);
-  const { data, error, isError, isLoading, fetchNextPage, isFetchingNextPage } =useGetPosts();
+  const { data, error, isError, isLoading, fetchNextPage, isFetchingNextPage } =useGetPosts({link:"api/post",key:"posts"});
   const Skeleton_model = useCallback(() => (
     <div className="flex justify-center items-center p-7">
       <Spinner label="Loading ....." color="success" labelColor="success" />

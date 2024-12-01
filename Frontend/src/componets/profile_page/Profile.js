@@ -6,7 +6,7 @@ import { Tooltip } from "@nextui-org/tooltip";
 import { Chip } from "@nextui-org/chip";
 import { Card, CardFooter } from "@nextui-org/card";
 import { Image } from "@nextui-org/image";
-
+import { Posts } from "../Content_section/Posts";
 import { PorfilePosts } from "./PorfilePosts";
 // import Ferdi from '/home/thodex/Desktop/website/src/images/trump.jpeg'
 
@@ -65,10 +65,9 @@ export const Profile = () => {
         ) : (
           <Image
             alt="Woman listing to music"
-            className="object-cover  rounded-none"
+            className="object-cover  rounded-none "
             src={User.img === "" ? setTrigger(true) : User.img}
             width={672}
-            isZoomed
             fallbackSrc="https://via.placeholder.com/300x200"
             isBlurred
           />

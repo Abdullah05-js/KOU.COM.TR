@@ -163,6 +163,7 @@ export const Register = () => {
 
   return ShowOTP ? (
     <div className="bg-black w-screen h-screen flex flex-col justify-center items-center text-white ">
+    
       <span class="relative flex h-3 w-3 mb-3">
         <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
         <span class="relative inline-flex rounded-full h-3 w-3  bg-primary"></span>

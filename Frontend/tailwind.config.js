@@ -4,7 +4,7 @@ import { nextui } from "@nextui-org/theme"
 module.exports = {
   content: [
     "./src/**/*.{html,js}",
-    "./node_modules/@nextui-org/theme/dist/components/(avatar|badge|button|card|chip|divider|image|input|link|modal|popover|scroll-shadow|skeleton|slider|spinner|user|ripple).js"
+    "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}"
   ],
   mode: "jit",
   theme: {
@@ -14,9 +14,6 @@ module.exports = {
         secondary: "#2dd4bf",
         dimWhite: "rgba(255, 255, 255, 0.7)",
         dimBlue: "rgba(9, 151, 124, 0.1)",
-      },
-      fontFamily: {
-        poppins: ["Poppins", "sans-serif"],
       },
     },
     screens: {

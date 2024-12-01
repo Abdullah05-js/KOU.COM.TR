@@ -1,17 +1,17 @@
 import axios from "axios";
 import { useInfiniteQuery } from "@tanstack/react-query";
-const FetchData = async ({ pageParam }) => {
-  const data = await axios.get(`http://localhost:5000/api/post`, {
-    params: { pageParam },
-  });
-  return data.data;
-};
 
-const useGetPosts = () => {
+//you need to pace a fucntion directliy to avoid unneccesry re renders
+const useGetPosts = ({key,link}) => {
   const { data, error, isError, isLoading, fetchNextPage, isFetchingNextPage } =
     useInfiniteQuery({
-      queryKey: ["posts"],
-      queryFn: FetchData,
+      queryKey: [key],
+      queryFn: async ({ pageParam}) => {
+        const data = await axios.get(`http://localhost:5000/${link}`, {
+          params: { pageParam },
+        })
+        return data.data
+      },
       retry: 2,
       initialPageParam: 0,
       getNextPageParam: (lastpage) => lastpage.nextPage,

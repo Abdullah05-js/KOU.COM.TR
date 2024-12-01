@@ -1,14 +1,10 @@
 import React from "react";
-import { Post } from "../Content_section/Post";
-import { useEffect, useState } from "react";
-import axios from "axios";
-
-// import Ferdi from '/home/thodex/Desktop/website/src/images/trump.jpeg'
+import {useEffect} from "react";
 import { Spinner } from "@nextui-org/spinner";
-
-export const PorfilePosts = ({ isCreatePostOn, setisCreatePostOn }) => {
-  const [PostsArray, setPostsArray] = useState([]);
-  const [Load, setLoad] = useState(true);
+import useGetPosts from "../Content_section/useGetPosts";
+import { Posts } from "../Content_section/Posts";
+export const PorfilePosts = () => {
+  const { data, error, isError, isLoading, fetchNextPage} =useGetPosts({link:"api/post",key:"profile"});
 
   const Skeleton_model = () => {
     return (
@@ -19,45 +15,23 @@ export const PorfilePosts = ({ isCreatePostOn, setisCreatePostOn }) => {
   };
 
   useEffect(() => {
-    const token = JSON.parse(localStorage.getItem("data"));
-    console.log("token", token.token);
-    axios
-      .get(`http://localhost:5000/api/profile`, {
-        params: { token: token.token },
-      })
-      .then((Response) => {
-        setPostsArray(Response.data);
-        console.log(Response.data);
-        setLoad(false);
-        setisCreatePostOn(false);
-      })
-      .catch((error) => {
-        // console.log(error.response.data.error)
-      });
+    const handleScroll = () => {
+      if (
+        window.scrollY + window.innerHeight  >=
+        document.documentElement.scrollHeight-300
+      ) {
+        //bittişten 700px önce fetch yapıyoruz
+        fetchNextPage();
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
 
     return () => {
-      console.log("cancleing ");
+      if (window) window.removeEventListener("scroll", handleScroll);
     };
-  }, [isCreatePostOn]);
+  }, [fetchNextPage]);
 
-  const ReturnPosts = PostsArray.map((e) => {
-    // console.log(e.image)
-    return (
-      <Post
-        key={e._id}
-        tag={e.Role}
-        posted_at={e.date}
-        src={e.profilePhoto}
-        name={e.UserName}
-        content={"dfvfdv"}
-        likes={e.likes}
-        comments={e.comments}
-        shares={e.shares}
-        views={e.views}
-        body_image={e.img}
-      />
-    );
-  });
 
-  return <>{Load ? Skeleton_model() : ReturnPosts}</>;
+  return <>{isLoading ? Skeleton_model() : <Posts PostsArray={data}/> && <h1 className="text-white text-center">You have no Posts Available</h1>}</>;
 };
