@@ -33,8 +33,13 @@
 3. **Configure Environment Variables**  
    Create a `.env` file in the root directory and set the required variables:
    ```
-   MONGO_URI=<your_mongodb_connection_string>
-   JWT_SECRET=<your_jwt_secret>
+   MONGO_URL = ...
+   PORT = 5000
+   JWT_KEY = "123"
+   ENCRYPT = "test"
+   APP_PASS = 123 
+   APP_USER = "hello@gmail.com" // email to send  otp 
+   LIMIT = 10 // post limit the will the useInfinityQuery will get
    ```
 
 4. **Run the Application**  
@@ -48,7 +53,7 @@
      ```
 
 5. **Access the Application**  
-   Open [http://localhost:3000](http://localhost:3000) in your browser.
+   Open [http://kou.com.tr](http://kou.com.tr) in your browser.
 
 ## Contributing
 
