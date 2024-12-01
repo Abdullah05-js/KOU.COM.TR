@@ -10,22 +10,25 @@ import useGetPosts from "./useGetPosts";
 
 const Main = () => {
   const [BorderB, SetBorderB] = useState("Explore");
-  const [CreatedPost,SetCreatedPost] = useState(null);
-  const { data, error, isError, isLoading, fetchNextPage, isFetchingNextPage } =useGetPosts({link:"api/post",key:"posts"});
-  const Skeleton_model = useCallback(() => (
-    <div className="flex justify-center items-center p-7">
-      <Spinner label="Loading ....." color="success" labelColor="success" />
-    </div>
-  ),[]);
-  
+  const [CreatedPost, SetCreatedPost] = useState(null);
+  const token = JSON.parse(localStorage.getItem("data")).token;
+  const { data, error, isError, isLoading, fetchNextPage, isFetchingNextPage } =
+    useGetPosts({ link: "api/post", key: "posts", token: token });
+  const Skeleton_model = useCallback(
+    () => (
+      <div className="flex justify-center items-center p-7">
+        <Spinner label="Loading ....." color="success" labelColor="success" />
+      </div>
+    ),
+    []
+  );
 
   useEffect(() => {
     const handleScroll = () => {
       if (
-        window.scrollY + window.innerHeight  >=
-        document.documentElement.scrollHeight-300
+        window.scrollY + window.innerHeight >=
+        document.documentElement.scrollHeight - 300
       ) {
-        //bittişten 700px önce fetch yapıyoruz
         fetchNextPage();
       }
     };
@@ -66,19 +69,21 @@ const Main = () => {
 
       <div>
         <CreatePost setPostsArray={SetCreatedPost} />
-        {CreatedPost&& <Post
-          KEY={CreatedPost._id}
-          tag={CreatedPost.Role}
-          posted_at={CreatedPost.date}
-          src={CreatedPost.profilePhoto}
-          name={CreatedPost.UserName}
-          content={CreatedPost.content}
-          likes={CreatedPost.likes}
-          comments={CreatedPost.comments}
-          shares={CreatedPost.shares}
-          views={CreatedPost.views}
-          body_image={CreatedPost.img}
-        />}
+        {CreatedPost && (
+          <Post
+            KEY={CreatedPost._id}
+            tag={CreatedPost.Role}
+            posted_at={CreatedPost.date}
+            UserPhoto={CreatedPost.UserPhoto}
+            name={CreatedPost.UserName}
+            content={CreatedPost.content}
+            likes={CreatedPost.likes}
+            comments={CreatedPost.comments}
+            shares={CreatedPost.shares}
+            views={CreatedPost.views}
+            body_image={CreatedPost.img}
+          />
+        )}
         {isLoading || <Posts PostsArray={data} />}
         {isLoading && Skeleton_model()}
         {isFetchingNextPage && Skeleton_model()}

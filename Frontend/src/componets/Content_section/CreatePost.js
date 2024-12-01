@@ -35,12 +35,9 @@ export const CreatePost = ({ setPostsArray }) => {
         SetLoad(true);
         const Response = await axios.post("http://localhost:5000/api/post", {
           token: data.token,
-          UserName: data.UserName,
           content: TextValue,
           img: FilesApi[0],
           Roles: false,
-          likes: "0",
-          veiws: "0",
         });
         setTextValue("");
         setRow(1);

@@ -44,17 +44,12 @@ router.post("/register", async (req, res) => {
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
 
-  console.log(req.body);
-
   // const user = await Users.findOneAndUpdate({email:email},{token:token})
   const user = await Users.findOne({ email });
-  console.log(user);
+
   const decryptedPassword = decrypt(user.Password, process.env.ENCRYPT);
-  console.log("here i am ", decryptedPassword.toString());
 
   if (decryptedPassword.toString() === password) {
-    console.log("the user from login :", user);
-
     const token = jwt.sign({ id: user._id }, process.env.JWT_KEY, {
       expiresIn: "7h",
     });

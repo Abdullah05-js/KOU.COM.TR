@@ -5,6 +5,10 @@ const postsSchema = mongoose.Schema({
     type: String,
     required: true,
   },
+  UserPhoto: {
+    type: String,
+    required: true,
+  },
   content: {
     type: String,
     required: false,

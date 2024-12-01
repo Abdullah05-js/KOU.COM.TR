@@ -174,6 +174,7 @@ export const Login = () => {
                 }}
                 type="email"
                 variant={"bordered"}
+                color="success"
                 label="Email"
                 placeholder="Enter your email"
               />
@@ -191,6 +192,7 @@ export const Login = () => {
                 label="Password"
                 variant="bordered"
                 placeholder="Enter your password"
+                color="success"
                 endContent={
                   <button
                     className="focus:outline-none"

@@ -10,7 +10,7 @@ import { Image } from "@nextui-org/image";
 import { useEffect } from "react";
 import { Spinner } from "@nextui-org/spinner";
 import axios from "axios";
-
+import market from "../../images/MarketPlace.png"
 let cancelAxios = null;
 
 export const SidebarR = () => {
@@ -66,11 +66,11 @@ export const SidebarR = () => {
           className="text-white"
         />
         <Button
-          variant="shadow"
+           variant="bordered"
           size="sm"
-          className="  text-white bg-green-500  font-bold text-center "
+          className="  text-white font-bold text-center "
         >
-          FOllow
+          Follow
         </Button>
       </li>
     );
@@ -99,28 +99,28 @@ export const SidebarR = () => {
             {Load ? Skeleton_model() : ReturnUsers}
 
             <Button
-              variant="shadow"
+               variant="bordered"
               size="sm"
-              className="  text- bg-green-500  font-bold text-center m-2 text-xl text-white"
+              className="font-bold text-center my-2 text-xl text-white h-10"
             >
               See More
             </Button>
           </ul>
         </li>
 
-        <li>
+        <li className="pt-2">
           <Card
             isFooterBlurred
             radius="lg"
-            className="border-2 border-solid border-green-300"
+            className="border-2 border-solid border-green-300 "
           >
             <Image
               alt="Woman listing to music"
               isZoomed
-              className="object-cover"
-              height={270}
-              src={""}
-              width={270}
+              className="object-cover "
+              height={250}
+              src={market}
+              width={250}
             />
             <CardFooter className="justify-between before:bg-white/10 border-white/20 border-1 overflow-hidden py-1 absolute before:rounded-xl rounded-large bottom-1 w-[calc(100%_-_8px)] shadow-small ml-1 z-10">
               <p className="text-tiny text-white/80">Market Available soon.</p>

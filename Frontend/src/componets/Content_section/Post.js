@@ -1,6 +1,5 @@
 import React from 'react'
 import { Card,CardBody,CardHeader,CardFooter } from '@nextui-org/card'
-import { Divider } from '@nextui-org/divider'
 import { Image } from '@nextui-org/image'
 import { Chip } from '@nextui-org/chip'
 import { useState } from 'react'
@@ -10,7 +9,7 @@ import { PostPage } from './PostPage'
 import { useNavigate } from "react-router-dom";
 
 
-export const Post = ({KEY,src,tag,name,content,likes,comments,shares,views,body_image,posted_at}) => {
+export const Post = ({KEY,tag,name,UserPhoto,content,likes,comments,shares,views,body_image,posted_at}) => {
 
   const navigate = useNavigate()
 
@@ -74,7 +73,7 @@ export const Post = ({KEY,src,tag,name,content,likes,comments,shares,views,body_
           alt="nextui logo"
          
           radius="sm"
-          src={src}
+          src={UserPhoto}
            fallbackSrc="https://via.placeholder.com/300x200"
           className="border-2 border-green-300 max-w-11 max-h-11 min-w-10 min-h-10"
         />

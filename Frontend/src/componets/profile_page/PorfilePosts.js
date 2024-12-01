@@ -4,7 +4,8 @@ import { Spinner } from "@nextui-org/spinner";
 import useGetPosts from "../Content_section/useGetPosts";
 import { Posts } from "../Content_section/Posts";
 export const PorfilePosts = () => {
-  const { data, error, isError, isLoading, fetchNextPage} =useGetPosts({link:"api/post",key:"profile"});
+  const token = JSON.parse(localStorage.getItem("data")).token
+  const { data, error, isError, isLoading, fetchNextPage,isFetchingNextPage} =useGetPosts({link:"api/profile",key:"profile",token:token});
 
   const Skeleton_model = () => {
     return (
@@ -33,5 +34,5 @@ export const PorfilePosts = () => {
   }, [fetchNextPage]);
 
 
-  return <>{isLoading ? Skeleton_model() : <Posts PostsArray={data}/> && <h1 className="text-white text-center">You have no Posts Available</h1>}</>;
+  return <>{isLoading || isFetchingNextPage ? Skeleton_model() : <Posts PostsArray={data}/> || <h1 className="text-white text-center">You have no Posts Available</h1>}</>;
 };
