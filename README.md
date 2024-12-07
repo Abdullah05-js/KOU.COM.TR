@@ -1,72 +1,64 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# KOU Social Media Platform
 
-## Available Scripts
+**KOU.com.tr** is a modern social media web application designed exclusively for university students. The platform fosters connections, collaboration, and engagement among students through innovative features.
 
-In the project directory, you can run:
+## Features
 
-### `npm start`
+- **Posting**: Share updates, photos, and more with your university network.
+- **Real-Time Chat**: Instant messaging for seamless communication.
+- **Real-Time Whiteboard**: Collaborate on projects or brainstorm ideas interactively.
+- **Tinder-like Features**: Connect with other students through mutual interests.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Technology Stack
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **Frontend**: React, React Query
+- **Backend**: Express.js
+- **Database**: MongoDB,Mongoose
+- **Authentication**: JWT
+- **Real time data**: socket.io,
+## Setup Instructions
 
-### `npm test`
+1. **Clone the Repository**  
+   ```bash
+   git clone https://github.com/andullahhan/kou.com.tr.git
+   cd kou.com.tr
+   ```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+2. **Install Dependencies**  
+   ```bash
+   npm install
+   ```
 
-### `npm run build`
+3. **Configure Environment Variables**  
+   Create a `.env` file in the root directory and set the required variables:
+   ```
+   MONGO_URL = ...
+   PORT = 5000
+   JWT_KEY = "123"
+   ENCRYPT = "test"
+   APP_PASS = 123 
+   APP_USER = "hello@gmail.com" // email to send  otp 
+   LIMIT = 10 // post limit the will the useInfinityQuery will get
+   ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+4. **Run the Application**  
+   - **Backend**:  
+     ```bash
+     npm run start:backend
+     ```
+   - **Frontend**:  
+     ```bash
+     npm run start:frontend
+     ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+5. **Access the Application**  
+   Open [http://kou.com.tr](http://kou.com.tr) in your browser.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Contributing
 
-### `npm run eject`
+Contributions are welcome! Please fork this repository and submit a pull request with your changes.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## License
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-# Website
-# Website
+This project is licensed under the MIT License. See the LICENSE file for details.
