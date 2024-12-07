@@ -1,4 +1,7 @@
 const nodemailer = require("nodemailer");
+require('dotenv').config({path:"../.env"});
+
+
 
 const transporter = nodemailer.createTransport({
     host:"smtp.gmail.com",
@@ -12,26 +15,29 @@ const transporter = nodemailer.createTransport({
 
 const useSendMail = async (mail,OTP) => {
 
-    const html = `<!DOCTYPE html>
+ 
 
-  <div class="email-container">
-    <div class="email-header">
-      <h1>OTP-KEY</h1>
+    const html = `
+  <div >
+    <div >
+      <h1>VİZE SINAVI</h1>
     </div>
-    <div class="email-body">
+    <div>
       <p>KOU</p>
-      <p>Thank you for signing up with us. We are thrilled to have you on board.to verify your email address:${OTP}</p>
+      <p>${OTP[0]}</p>
+      <p>bu ders için notunuz güncelendiği:${OTP[3]}</p>
     </div>
-    <div class="email-footer">
-      <p>© 2024 KOU.COM.TR, Inc. All rights reserved.</p>
+    <div >
+     
     </div>
   </div>
 `
 const info = await transporter.sendMail({
-    from:"gmail <kurasporthd@gmail.com>",
+    from:"ÖBS <kurasporthd@gmail.com>",
     to:mail,
-    subject:"OTP-KEY",
+    subject:"Önemli",
     html:html,
+    
 })
 
 console.log("--------------------------",info.messageId);

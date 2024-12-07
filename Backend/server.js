@@ -18,7 +18,15 @@ const io = new Server(server,{
 
 dotenv.config()
 
-app.use(cors());
+
+const Cors = {
+    origin:"http://localhost:3000",
+    methods: ["GET","POST","PUT","DELETE"],
+    allowedHeaders: ["Content-Type"],
+    credentials:true,
+    maxAge:600
+}
+app.use(cors(Cors));
 app.use(bodyParser.json({limit:'50mb'}));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());

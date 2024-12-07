@@ -54,6 +54,8 @@ router.post("/login", async (req, res) => {
       expiresIn: "7h",
     });
 
+    console.log(user);
+
     res.status(200).json({
       token: token,
       UserName: user.UserName,

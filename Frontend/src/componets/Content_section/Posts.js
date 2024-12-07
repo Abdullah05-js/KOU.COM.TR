@@ -1,6 +1,5 @@
 import React from "react";
 import { Post } from "./Post";
-import { Spinner } from "@nextui-org/spinner";
 
 export const Posts = ({ PostsArray }) => {
   const ReturnPosts = PostsArray.pages.map((page) => {
@@ -12,6 +11,7 @@ export const Posts = ({ PostsArray }) => {
           posted_at={e.date}
           src={e.profilePhoto}
           name={e.UserName}
+          UserPhoto={e.UserPhoto}
           content={e.content}
           likes={e.likes}
           comments={e.comments}

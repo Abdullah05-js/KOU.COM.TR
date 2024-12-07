@@ -32,12 +32,12 @@ export const Profile = () => {
             </Button>
           </Link>
 
-          <div>
+          {/* <div>
             <h2 className="text-white font-extrabold text-xl">
               {User.UserName}
             </h2>
             <p className="text-gray-400 font-light  ">{2}-posts</p>
-          </div>
+          </div> */}
         </div>
 
         {/* roles seaction here  */}
@@ -73,13 +73,12 @@ export const Profile = () => {
           />
         )}
 
-        <CardFooter className="justify-between before:bg-white/10 border-green-300 border-2 overflow-hidden py-1 absolute before:rounded-xl rounded-large bottom-1 w-[calc(100%_-_8px)]  ml-1 z-10">
+        {/* <CardFooter className=" before:bg-white/10  overflow-hidden py-1 absolute before:rounded-xl rounded-large bottom-1 w-[calc(100%_-_8px)]  ml-1 z-10">
           <div className="flex flex-1 justify-between ">
             <div className="flex flex-col  items-center gap-2">
               <h2 className="text-white font-extrabold text-xl">
                 {User.UserName}
               </h2>
-              <h4 className="text-white">{User.UserName}</h4>
 
               <div className="flex flex-row gap-2">
                 <Button
@@ -89,7 +88,7 @@ export const Profile = () => {
                   radius="lg"
                   size="sm"
                 >
-                  {2}-Following
+                  {2} Following
                 </Button>
                 <Button
                   className=" text-white text-lg bg-black/20 font-bold"
@@ -98,7 +97,7 @@ export const Profile = () => {
                   radius="lg"
                   size="sm"
                 >
-                  {3}-Follower
+                  {3} Follower
                 </Button>
               </div>
             </div>
@@ -114,7 +113,7 @@ export const Profile = () => {
               </Button>
             </div>
           </div>
-        </CardFooter>
+        </CardFooter> */}
       </Card>
 
       <PorfilePosts />

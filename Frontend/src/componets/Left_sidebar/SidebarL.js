@@ -28,8 +28,11 @@ export const SidebarL = () => {
 
   const CreatePostModal = () => {
     const handleClick = (e) => {
-      if (e.target.id === "modal") document.body.style.overflow = "auto";
-      setisOpen(false);
+      if (e.target.id === "modal") 
+      {
+        document.body.style.overflow = "auto";
+        setisOpen(false);
+      }
     };
 
     return (

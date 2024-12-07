@@ -18,6 +18,7 @@
     "node-encryption": "^2.0.1",
     "nodemailer": "^6.9.16",
     "nodemon": "^3.1.4",
+    "puppeteer": "^23.10.1",
     "socket.io": "^4.8.0",
     "uuid": "^10.0.0"
   }

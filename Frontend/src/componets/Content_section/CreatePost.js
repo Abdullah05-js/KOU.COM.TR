@@ -11,7 +11,7 @@ import data from "@emoji-mart/data";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Spinner } from "@nextui-org/spinner";
-
+import { Link } from "react-router-dom";
 
 // let validToken = "128202|eg0sxt0FCRa1oBFsP0SVTf7KV5zgPMmWfFnHm7gF"
 export const CreatePost = ({ setPostsArray }) => {
@@ -42,9 +42,9 @@ export const CreatePost = ({ setPostsArray }) => {
         setTextValue("");
         setRow(1);
         setFilesApi([]);
-        console.log("from post requestt",Response.data );
+        console.log("from post requestt", Response.data);
         SetLoad(false);
-        setPostsArray(Response.data)
+        setPostsArray(Response.data);
       } catch (error) {
         console.log(error);
         navigate("/");
@@ -70,7 +70,7 @@ export const CreatePost = ({ setPostsArray }) => {
   };
 
   const handleDelete = (index) => {
-    console.log("sdc", index);
+    
     let NewFiles = [...FilesApi];
 
     NewFiles.splice(index, 1);
@@ -97,14 +97,19 @@ export const CreatePost = ({ setPostsArray }) => {
   return (
     <div className="flex flex-col justify-center items-center  border-b-2 border-green-300">
       <div className="flex flex-row gap-4">
-        <User
-          as={"button"}
-          className="text-white font-extrabold transition-transform pb-14"
-          name={user.UserName}
-          avatarProps={{
-            src: user.img,
-          }}
-        />
+        <Link
+          to={"/home/profile"}
+          className="flex justify-center items-center pb-10"
+        >
+          <User
+            as={"button"}
+            className="text-white font-extrabold transition-transform"
+            name={user.UserName}
+            avatarProps={{
+              src: user.img,
+            }}
+          />
+        </Link>
 
         <div className="flex flex-col justify-start  gap-2 ">
           <textarea

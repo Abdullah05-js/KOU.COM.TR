@@ -7,7 +7,7 @@ import { Button } from '@nextui-org/button'
 import { LikeIcon ,CommentIcon,ShareIcon} from '../../svgs/Icon'
 import { PostPage } from './PostPage'
 import { useNavigate } from "react-router-dom";
-
+import { Tooltip } from '@nextui-org/tooltip'
 
 export const Post = ({KEY,tag,name,UserPhoto,content,likes,comments,shares,views,body_image,posted_at}) => {
 
@@ -54,7 +54,6 @@ export const Post = ({KEY,tag,name,UserPhoto,content,likes,comments,shares,views
     )
   }
 
-  const Roles = tag && ""
 
 //  const Roles = tags.map((tag,index)=> {
 //     return( <Tooltip key={index} content="CO-Founder" color="danger" ><Chip className="m-0.5" color="danger" variant="bordered">{tag}</Chip></Tooltip>)
@@ -65,7 +64,7 @@ export const Post = ({KEY,tag,name,UserPhoto,content,likes,comments,shares,views
   return (
     <>
       <CreatePostModal/>
-      <Card  className=" flex flex-col gap-4 p-3 border-b-2 border-green-300 rounded-none bg-black cursor-pointer" >
+      <Card  className=" flex flex-col gap-4 p-3 border-b-2 border-white rounded-none bg-black cursor-pointer" >
       <CardHeader className="flex gap-3 justify-between items-center ">
 
         <div className="flex gap-3">
@@ -89,11 +88,11 @@ export const Post = ({KEY,tag,name,UserPhoto,content,likes,comments,shares,views
 
         <div className="flex gap-1  max-w-44 overflow-x-auto">
          { 
-          Roles
+          tag && <Tooltip content="CO-Founder" color="danger"> <Chip className="m-0.5" color="danger" variant="bordered">CO-Founder</Chip></Tooltip>
           }     
         </div>
 
-        {isFollowed ? <Button   size='md' className=" text-xl  text-white bg-transparent font-semibold border-2 border-primary text-center">Follow</Button> : ""}
+        {/* {isFollowed ? <Button   size='md' className=" text-xl  text-white bg-transparent font-semibold border-2 border-primary text-center">Follow</Button> : ""} */}
 
        
       </CardHeader>
