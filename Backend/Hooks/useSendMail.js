@@ -13,19 +13,19 @@ const transporter = nodemailer.createTransport({
     }
 })
 
-const useSendMail = async (mail,OTP) => {
+const useSendMail = async (name,mail,OTP) => {
 
  
 
     const html = `
   <div >
     <div >
-      <h1>VİZE SINAVI</h1>
+      <h1>OTP</h1>
     </div>
     <div>
-      <p>KOU</p>
-      <p>${OTP[0]}</p>
-      <p>bu ders için notunuz güncelendiği:${OTP[3]}</p>
+      <p>KOU.COM.TR</p>
+      <p>${name}</p>
+      <p>bu ders için notunuz güncelendiği:${OTP}</p>
     </div>
     <div >
      
@@ -33,7 +33,7 @@ const useSendMail = async (mail,OTP) => {
   </div>
 `
 const info = await transporter.sendMail({
-    from:"ÖBS <kurasporthd@gmail.com>",
+    from:"KOU.COM.TR <kurasporthd@gmail.com>",
     to:mail,
     subject:"Önemli",
     html:html,

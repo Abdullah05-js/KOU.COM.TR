@@ -39,7 +39,7 @@ try{
     console.log("connected to mongodb")
 }
 catch(error){
-    console.log("error from mongo:------------",error.message)
+    console.log("error from mongo:------------",error.message);
 }
 
 }

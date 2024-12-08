@@ -24,7 +24,7 @@ export const Login = () => {
 
   const [UserData, setUserData] = useState({ email: "", password: "" });
 
-  const validateEmail = (value) => value.match(/^[0-9]{9}@kocaeli.edu.tr$/i);
+  const validateEmail = (value) => value.match(/^[0-9]{9}/i);
 
   const navigate = useNavigate();
 

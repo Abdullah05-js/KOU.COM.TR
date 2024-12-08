@@ -32,7 +32,7 @@ export const Register = () => {
     img: "",
   });
 
-  const [Otp, setOtp] = useState({ otp: [], otpId: null });
+  const [Otp, setOtp] = useState({ otp: [], otpId: null,name:"" });
 
   const checkOTP = async (newData) => {
     try {
@@ -142,7 +142,7 @@ export const Register = () => {
           { email: UserData.email }
         );
         console.log(response.data);
-        setOtp({ ...Otp, otpId: response.data.OtpId });
+        setOtp({ ...Otp, otpId: response.data.OtpId , name:response.data.name});
         setShowOTP(true);
         setLoad(false);
       } catch (error) {
@@ -170,7 +170,7 @@ export const Register = () => {
       </span>
       <h1>OTP verification</h1>
       <h2 className="border-b-2  border-b-green-300 text-center">
-        Please check your email:{UserData.email}
+        Please check your email:{UserData.email} ,Welcome {Otp.name}
       </h2>
 
       <div>
