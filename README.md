@@ -1,5 +1,7 @@
+![Ekran görüntüsü 2024-12-02 194746](https://github.com/user-attachments/assets/b4eca543-33ab-45bb-8b8c-eb98c128c28b)
 
 # KOU Social Media Platform
+
 
 **KOU.com.tr** is a modern social media web application designed exclusively for university students. The platform fosters connections, collaboration, and engagement among students through innovative features.
 
