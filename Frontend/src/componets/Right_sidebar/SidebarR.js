@@ -79,7 +79,7 @@ export const SidebarR = () => {
   return (
     <div className="sticky top-0 z-40 flex flex-col justify-start items-center min-w-80  h-screen border-l-2 border-solid border-green-300 ">
       <ul className="flex flex-col">
-        <li>
+        {/* <li>
           <Input
             color="success"
             type="email"
@@ -89,7 +89,7 @@ export const SidebarR = () => {
             variant="bordered"
             className="min-w-52 w-60 pt-4 text-white "
           />
-        </li>
+        </li> */}
         <li className="min-w-52 w-60 rounded-lg">
           <h3 className="text-center p-2 font-bold text-white">New Friends?</h3>
 

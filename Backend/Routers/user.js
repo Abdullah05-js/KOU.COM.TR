@@ -45,8 +45,8 @@ router.post("/login", async (req, res) => {
   const { email, password } = req.body;
 
   // const user = await Users.findOneAndUpdate({email:email},{token:token})
-  const user = await Users.findOne({ email:`${email}@kocaeli.edu.tr` });
-
+  const user = await Users.findOne({ email });
+  console.log(user);
   const decryptedPassword = decrypt(user.Password, process.env.ENCRYPT);
 
   if (decryptedPassword.toString() === password) {

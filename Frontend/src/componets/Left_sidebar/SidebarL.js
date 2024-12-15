@@ -87,6 +87,7 @@ export const SidebarL = () => {
           </Link>
         </li>
         <li className="transition ease-in-out duration-1000 hover:translate-x-6">
+        <Link to={"/home/Search"}>
           <Button
             color="primary"
             variant="light"
@@ -96,6 +97,7 @@ export const SidebarL = () => {
           >
             Search
           </Button>
+          </Link>
         </li>
         <li className="transition ease-in-out duration-1000 hover:translate-x-6">
           <Link to={"/chat"}>

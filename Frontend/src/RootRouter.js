@@ -11,13 +11,14 @@ import Main from "./componets/Content_section/Main.js";
 import { Chat } from "./componets/Chat/Chat";
 import ChatApp from "./componets/Root/ChatApp";
 import Test from "./componets/Test/Test.js";
+import Search from "./componets/Search/Search.js";
 export const RootRouter = () => {
   return (
     <>
       <Routes>
         <Route path="/home" element={<App />}>
           <Route index element={<Main />} />
-          <Route path="Search" element={<Main />} />
+            <Route path="Search" element={<Search/>} />
           <Route path="Messages" element={<Main />} />
           <Route path="Profile" element={<Profile />} />
           <Route path=":id" element={<Main />} />
@@ -30,7 +31,7 @@ export const RootRouter = () => {
 
         <Route path="/market" element={<MarketApp />}>
           <Route index element={<Market />} />
-          <Route path="Search" element={<Main />} />
+          <Route path="Search" element={<Search/>} />
           <Route path="Messages" element={<Main />} />
           <Route path="Profile" element={<Profile />} />
           <Route path="Market" element={<Main />} />
