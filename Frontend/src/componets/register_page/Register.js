@@ -11,9 +11,10 @@ import axios from "axios";
 import { Spinner } from "@nextui-org/spinner";
 import { useNavigate } from "react-router-dom";
 import { ImageIcon } from "../../svgs/Icon";
-
 export const Register = () => {
   const WordsArray = ["ART", "SCİENCE", "TECHNOLOGY"];
+
+  const navigate = useNavigate();
 
   const [isVisible, setIsVisible] = useState(false);
 
@@ -32,11 +33,32 @@ export const Register = () => {
     img: "",
   });
 
-  const [Otp, setOtp] = useState({ otp: [], otpId: null,name:"" });
+  const [Otp, setOtp] = useState({ otp: [], otpId: null, name: "" });
+
+  const CreateAccount = async () => {
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/api/users/register",
+        {
+          UserName: UserData.email.slice(0, 9),
+          email: UserData.email,
+          password: UserData.password1,
+          img: UserData.img,
+        }
+      );
+
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+ 
 
   const checkOTP = async (newData) => {
+    const inputs = document.querySelectorAll("input");
     try {
-      const inputs = document.querySelectorAll("input");
+    
       inputs.forEach((e) => {
         e.setAttribute("disabled", "disabled");
       });
@@ -45,14 +67,30 @@ export const Register = () => {
         "http://localhost:5000/api/OTP/verify-otp",
         { OTP: newData.join(""), OtpId: Otp.otpId }
       );
+
       console.log(response.data);
-      setLoad(false);
-      navigate("/home");
+      if (response.status === 200) {
+        const data = await CreateAccount();
+        localStorage.setItem("data", JSON.stringify(data));
+        navigate("/home");
+      } else {
+        throw new Error("error happend while createing the account");
+      }
     } catch (error) {
+      console.log("am in ");
+      
+      setOtp({...Otp,otp: []})
+      inputs.forEach((e) => {
+        e.removeAttribute("disabled", "disabled")
+      });
       console.log(error);
-      setLoad(false);
+     
+    }finally{
+      setLoad(false)
     }
   };
+
+
 
   const handleİnput = (e) => {
     const inputs = document.querySelectorAll("input");
@@ -72,7 +110,7 @@ export const Register = () => {
     //better then all the tutorials on youtube lol made by ABDULLAH HAN
   };
   const validateEmail = (value) => value.match(/^[0-9]{9}@kocaeli.edu.tr$/i);
-  const navigate = useNavigate();
+  
 
   const isInvalid = React.useMemo(() => {
     if (UserData.email === "") return false;
@@ -136,21 +174,27 @@ export const Register = () => {
     // setLoad(true);
     const ApiRequest = async () => {
       try {
+        setLoad(true)
         console.log("fetching");
         const response = await axios.post(
           "http://localhost:5000/api/OTP/send-otp",
           { email: UserData.email }
         );
         console.log(response.data);
-        setOtp({ ...Otp, otpId: response.data.OtpId , name:response.data.name});
+        setOtp({
+          ...Otp,
+          otpId: response.data.OtpId,
+          name: response.data.name,
+        });
         setShowOTP(true);
-        setLoad(false);
       } catch (error) {
         console.log(error);
+        
+      }finally{
         setLoad(false);
       }
     };
-     ApiRequest();
+    ApiRequest();
   };
 
   const Skeleton_model = () => {
@@ -163,7 +207,6 @@ export const Register = () => {
 
   return ShowOTP ? (
     <div className="bg-black w-screen h-screen flex flex-col justify-center items-center text-white ">
-    
       <span class="relative flex h-3 w-3 mb-3">
         <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
         <span class="relative inline-flex rounded-full h-3 w-3  bg-primary"></span>
@@ -177,6 +220,7 @@ export const Register = () => {
         <input
           type="number"
           id="0"
+          value={Otp.otp[0]}
           maxLength={"1"}
           className="focus:border-white focus:outline-none focus:border-2  bg-black m-2 border-2 border-green-300 w-14 min-h-14 text-center"
           onChange={handleİnput}
@@ -184,6 +228,7 @@ export const Register = () => {
         <input
           type="number"
           id="1"
+          value={Otp.otp[1]}
           maxLength={"1"}
           className="focus:border-white focus:outline-none focus:border-2  bg-black m-2 border-2 border-green-300 w-14 min-h-14 text-center"
           onChange={handleİnput}
@@ -191,6 +236,7 @@ export const Register = () => {
         <input
           type="number"
           id="2"
+          value={Otp.otp[2]}
           maxLength={"1"}
           className="focus:border-white focus:outline-none focus:border-2  bg-black m-2 border-2 border-green-300 w-14 min-h-14 text-center"
           onChange={handleİnput}
@@ -198,6 +244,7 @@ export const Register = () => {
         <input
           type="number"
           id="3"
+          value={Otp.otp[3]}
           maxLength={"1"}
           className="focus:border-white focus:outline-none focus:border-2  bg-black m-2 border-2 border-green-300 w-14 min-h-14 text-center"
           onChange={handleİnput}
@@ -206,7 +253,7 @@ export const Register = () => {
       {Load ? Skeleton_model() : ""}
     </div>
   ) : (
-    <div className="flex flex-row bg-black h-screen">
+    <div className="flex flex-row bg-black h-screen overflow-hidden">
       <div className="flex flex-col border-r-4 justify-center items-center border-green-300 max-w-[1100px] min-w-[1000px] ">
         <div className=" flex flex-col mt-5 justify-center items-center">
           <WebsiteIcon />
@@ -251,6 +298,22 @@ export const Register = () => {
                 <h1 className="text-green-300 min-w-52 bg-white text-center text-3xl font-bold">
                   Online
                 </h1>
+              </div>
+            </li>
+            <li>
+              {" "}
+              <div className="flex flex-row gap-2  mt-5">
+                {UserData.img && (
+                  <Image
+                    onClick={() => {
+                      setUserData({ ...UserData, img: "" });
+                    }}
+                    src={UserData.img}
+                    className="border-2 border-white cursor-pointer"
+                    width={400}
+                    height={400}
+                  />
+                )}
               </div>
             </li>
           </ul>

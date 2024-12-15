@@ -48,6 +48,8 @@ app.get("/get",(req,res)=>{
     console.log("hello am here")
 })
 
+app.get("/",connect)
+
 app.use("/api", mainRoute);
 
 
@@ -55,7 +57,7 @@ app.use("/api", mainRoute);
 server.listen(process.env.PORT,async ()=>{
 
     console.log("am in2")
-     await connect()
+      await connect()
     console.log(`server working on ${process.env.PORT} port `)
 })
 

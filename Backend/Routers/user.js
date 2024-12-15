@@ -35,7 +35,7 @@ router.post("/register", async (req, res) => {
     token: token,
     UserName: UserName,
     email: email,
-    img: img,
+    img,img
   });
 });
 

@@ -168,7 +168,7 @@ export const SidebarL = () => {
                     className="object-cover rounded-xl"
                     src={User.img}
                     width={270}
-                    height={270}
+                    height={200}
                   />
                 </CardBody>
               </Card>

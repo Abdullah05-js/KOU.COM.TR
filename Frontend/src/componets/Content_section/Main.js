@@ -25,10 +25,14 @@ const Main = () => {
 
   useEffect(() => {
     const handleScroll = () => {
+      //!isFetchingNextPage added this to make it fetch once 
       if (
         window.scrollY + window.innerHeight >=
         document.documentElement.scrollHeight - 300
+        &&
+        !isFetchingNextPage
       ) {
+        console.log("hi");
         fetchNextPage();
       }
     };
@@ -38,7 +42,7 @@ const Main = () => {
     return () => {
       if (window) window.removeEventListener("scroll", handleScroll);
     };
-  }, [fetchNextPage]);
+  }, [fetchNextPage, isFetchingNextPage]);
 
   return (
     <div className=" min-w-[672px]">

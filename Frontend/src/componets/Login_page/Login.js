@@ -44,7 +44,6 @@ export const Login = () => {
       setisButtonOn(false);
     }
   }, [UserData]);
-
   useEffect(() => {
     const timeout = setTimeout(() => {
       if (Words === WordsArray[0]) {
@@ -97,6 +96,7 @@ export const Login = () => {
 
   return (
     <div className="flex flex-row bg-black h-screen">
+      
       <div className="flex flex-col border-r-4 justify-center items-center border-green-300 max-w-[1100px] min-w-[1000px] ">
         <div className=" flex flex-col mt-5 justify-center items-center">
           <WebsiteIcon />
