@@ -23,8 +23,7 @@ const Search = () => {
 
   const GetSearchedData = useCallback(async () => {
     try {
-      setisFetching(true);
-      const response = await axios.post(
+      const response = await axios.get(
         "http://localhost:5000/api/users/search",
         {
           Query,
@@ -36,18 +35,19 @@ const Search = () => {
       setAllSearchList(newAllData);
     } catch (error) {
       console.log(error);
-    } finally {
-      setisFetching(false);
-    }
+    } 
   }, [AllSearchList, Query]);
 
   // isSearched method is to control if this query is alerdy searched to not make request
 
   const isSearched = useCallback(
-    (query) =>
+    (query) => {
+      setisFetching(false)
+      setSearchList([])
       AllSearchList[query]
-        ? setSearchList(AllSearchList[query])
-        : GetSearchedData(),
+      ? setSearchList(AllSearchList[query])
+      : GetSearchedData()
+    },
     [AllSearchList, GetSearchedData]
   );
 
@@ -80,6 +80,8 @@ const Search = () => {
     );
   });
 
+  console.log(Query)
+
   useEffect(() => {
     const handler = setTimeout(
       () => (Query === "" ? setSearchList([]) : isSearched(Query)),
@@ -98,6 +100,7 @@ const Search = () => {
         className="text-white min-w-56 max-w-96"
         value={Query}
         onChange={(e) => {
+          setisFetching(true)
           setQuery(e.target.value);
         }}
         type="text"

@@ -4,6 +4,7 @@ const UsersSchema = mongoose.Schema({
   UserName: {
     type: String,
     required: [true, "name is required"],
+    index:"text"
   },
   email: {
     type: String,
@@ -30,6 +31,9 @@ const UsersSchema = mongoose.Schema({
   },
 });
 
+// UsersSchema.index({UserName:"text"})
+
 const Users = mongoose.model("Users", UsersSchema);
+
 
 module.exports = Users;

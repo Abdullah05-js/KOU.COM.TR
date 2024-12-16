@@ -9,6 +9,7 @@ const RoomRouter = require("./room.js");
 const ChatRouter = require("./chat.js");
 const NewChatRouter = require("./NewChat.js");
 const verifyOTP = require("./VerifyOTP.js");
+const SearchUser= require("./search.js");
 
 router.use("/newchat", PostRouter);
 
@@ -23,5 +24,7 @@ router.use("/profile", profileRouter);
 router.use("/chat", ChatRouter);
 
 router.use("/OTP", verifyOTP);
+
+router.use("/search",SearchUser)
 
 module.exports = router;
