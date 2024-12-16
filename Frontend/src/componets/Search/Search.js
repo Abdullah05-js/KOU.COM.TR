@@ -21,12 +21,17 @@ const Search = () => {
 
   // fetch fonksiyonu
 
-  const GetSearchedData = useCallback(async () => {
+  const GetSearchedData = useCallback(async (signal) => {
     try {
+      const token = JSON.parse(localStorage.getItem("data")).token
       const response = await axios.get(
-        "http://localhost:5000/api/users/search",
+        "http://localhost:5000/api/search",
         {
+        signal:signal,
+        params:{
           Query,
+          token
+        }
         }
       );
       setSearchList(response.data);
@@ -41,12 +46,12 @@ const Search = () => {
   // isSearched method is to control if this query is alerdy searched to not make request
 
   const isSearched = useCallback(
-    (query) => {
+    (query,signal) => {
       setisFetching(false)
       setSearchList([])
       AllSearchList[query]
       ? setSearchList(AllSearchList[query])
-      : GetSearchedData()
+      : GetSearchedData(signal)
     },
     [AllSearchList, GetSearchedData]
   );
@@ -83,13 +88,17 @@ const Search = () => {
   console.log(Query)
 
   useEffect(() => {
+    //to cancel the request or abort it implment this to others canceltoken depreceted
+    const controler = new AbortController();
+
     const handler = setTimeout(
-      () => (Query === "" ? setSearchList([]) : isSearched(Query)),
+      () => (Query === "" ? setSearchList([]) : isSearched(Query,controler.signal)),
       700
     );
 
     return () => {
       clearTimeout(handler);
+      controler.abort();
     };
   }, [Query, isSearched]);
 
