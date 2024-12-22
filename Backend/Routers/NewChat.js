@@ -1,14 +1,11 @@
-const express = require("express");
+import express from "express";
+import Chat from "../Modules/Chat.js";
+import jwt from "jsonwebtoken";
+import { v4 as uuidv4 } from "uuid";
+import Room from "../Modules/Rooms.js";
 
 const router = express.Router();
 
-const Chat = require("../Modules/Chat");
-
-const jwt = require("jsonwebtoken");
-
-const { v4: uuidv4 } = require("uuid");
-
-const Room = require("../Modules/Rooms");
 
 // create room
 
@@ -45,4 +42,4 @@ router.post("/", async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;

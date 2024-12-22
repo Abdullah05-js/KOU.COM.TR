@@ -1,23 +1,26 @@
-const express = require("express");
-const app = express();
-const mongoose = require("mongoose");
-const http = require("http")
-const dotenv = require("dotenv");
-const jwt = require("jsonwebtoken")
-const cors = require("cors");
-const rateLimit = require("express-rate-limit")
-const mainRoute = require("./Routers/index.js")
-var bodyParser = require('body-parser');
-const server = http.createServer(app);
-const {Server} = require("socket.io")
-const Chat = require("./Modules/Chat.js")
-const io = new Server(server,{
-    cors:{
-        origin:"http://localhost:3000"
-    }
-})
+import express from "express";
+import mongoose from "mongoose";
+import http from "http";
+import dotenv from "dotenv";
+import jwt from "jsonwebtoken";
+import cors from "cors";
+import bodyParser from "body-parser";
+import { LimitOTP, LimitSearch, LimitUserRegister, LimitUserLogin, LimitCreatePost } from "./RateLimits.js";
+import mainRoute from "./Routers/index.js";
+import { Server } from "socket.io";
+import Chat from "./Modules/Chat.js";
 
-dotenv.config()
+dotenv.config();
+
+const app = express();
+const server = http.createServer(app);
+
+const io = new Server(server, {
+    cors: {
+        origin: "http://localhost:3000",
+    },
+});
+
 
 
 const Cors = {
@@ -27,39 +30,6 @@ const Cors = {
     credentials:true,
     maxAge:600
 }
-
-const LimitUserLogin = rateLimit({
-    windowMs:5 * 60 * 10000,
-    max:5,
-    message:"LAN spamlama aq ya görüyorum seni ipin de var piç"
-})
-
-const LimitUserRegister = rateLimit({
-    windowMs:30 * 60 * 10000,
-    max:5,
-    message:"LAN spamlama aq ya görüyorum seni ip'in de var piç"
-})
-
-const LimitOTP = rateLimit({
-    windowMs:15 * 60 * 10000,
-    max:3,
-    message:"LAN spamlama aq ya görüyorum seni ip'in de var piç"
-})
-
-
-const LimitSearch = rateLimit({
-    windowMs:15 * 60 * 10000,
-    max:50,
-    message:"yavaş kanka",
-})
-
-const LimitCreatePost = rateLimit({
-    windowMs:15 * 60 * 10000,
-    max:10,
-    message:"YOU CAN POST 10 POSTS EVERY 10 MİNUTES",
-})
-
-
 
 
 

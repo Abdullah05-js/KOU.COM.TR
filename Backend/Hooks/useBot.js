@@ -1,5 +1,6 @@
-const puppeteer = require("puppeteer");
-const useSendMail = require("./useSendMail");
+import puppeteer from "puppeteer";
+import useSendMail from "./useSendMail.js";
+
 
 const useBot = async (email) => {
   const no = email.slice(0, 9);
@@ -32,4 +33,4 @@ const useBot = async (email) => {
   }
 };
 
-module.exports = useBot;
+export default useBot;

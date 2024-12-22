@@ -1,15 +1,19 @@
-const express = require("express");
+import express from "express";
 const router = express.Router();
 
+
 //routers
-const PostRouter = require("./post.js");
-const UsersRouter = require("./user.js");
-const profileRouter = require("./profile.js");
-const RoomRouter = require("./room.js");
-const ChatRouter = require("./chat.js");
-const NewChatRouter = require("./NewChat.js");
-const verifyOTP = require("./VerifyOTP.js");
-const SearchUser= require("./search.js");
+import PostRouter from "./post.js";
+import UsersRouter from "./user.js";
+import profileRouter from "./profile.js";
+import RoomRouter from "./room.js";
+import ChatRouter from "./chat.js";
+import NewChatRouter from "./NewChat.js";
+import verifyOTP from "./VerifyOTP.js";
+import SearchUser from "./search.js";
+
+
+
 
 router.use("/newchat", PostRouter);
 
@@ -27,4 +31,4 @@ router.use("/OTP", verifyOTP);
 
 router.use("/search",SearchUser)
 
-module.exports = router;
+export default router;

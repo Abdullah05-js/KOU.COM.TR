@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { Spinner } from "@nextui-org/spinner";
 import { useNavigate } from "react-router-dom";
+import photo from "../../images/koubook.webp";
 
 export const Login = () => {
   const WordsArray = ["ART", "SCİENCE", "TECHNOLOGY"];
@@ -46,6 +47,7 @@ export const Login = () => {
   }, [UserData]);
   useEffect(() => {
     const timeout = setTimeout(() => {
+      document.getElementById("animate").classList.add("animate-ping");
       if (Words === WordsArray[0]) {
         setWords(WordsArray[1]);
       } else if (Words === WordsArray[1]) {
@@ -55,8 +57,13 @@ export const Login = () => {
       }
     }, 3000);
 
+    const timeout1 = setTimeout(() => {
+      document.getElementById("animate").classList.remove("animate-ping");
+    }, 500);
+
     return () => {
       clearTimeout(timeout);
+      clearTimeout(timeout1);
     };
   }, [Words]);
 
@@ -95,31 +102,41 @@ export const Login = () => {
   };
 
   return (
-    <div className="flex flex-row bg-black h-screen">
-      
-      <div className="flex flex-col border-r-4 justify-center items-center border-green-300 max-w-[1100px] min-w-[1000px] ">
+    <div className="flex flex-row bg-black h-screen overflow-hidden">
+      <div className="flex flex-col border-r-4 justify-center items-center border-green-300 max-w-[1100px] min-w-[1000px]">
         <div className=" flex flex-col mt-5 justify-center items-center">
           <WebsiteIcon />
-          <h1 className="text-green-300 mt-2 text-3xl ">
-            Welcome to 长ㄖㄩ.尸㇄闩ㄚ{" "}
-          </h1>
         </div>
-        <div className="flex flex-col gap-4  h-screen mt-10">
-          <ul>
+        <div className="flex flex-col gap-4  h-screen ">
+          <ul className="flex flex-col gap-4">
+            <li>
+              <div className="flex flex-row gap-2  mt-10">
+                <h1 className="text-white text-3xl font-bold ">
+                  Experience the Campus
+                </h1>
+                <h1 className="text-green-300 min-w-52 bg-white text-center text-3xl font-bold">
+                  Online
+                </h1>
+              </div>
+            </li>
+
             <li>
               <Image
-                src={""}
-                isZoomed
-                width={800}
+                src={photo}
+                width={450}
+                height={300}
                 isBlurred
-                className="border-2 border-green-300"
+                className="object-cover"
               />
             </li>
             <li>
               {" "}
-              <div className="flex flex-row gap-2  mt-10">
+              <div className="flex flex-row gap-2 ">
                 <h1 className="text-white text-3xl ">FOR A QUARTER CENTURY </h1>
-                <h1 className="text-green-300 min-w-52 bg-white text-center text-3xl font-bold ">
+                <h1
+                  id="animate"
+                  className="text-green-300 min-w-52 bg-white text-center text-3xl font-bold"
+                >
                   {Words}
                 </h1>
               </div>
@@ -130,18 +147,6 @@ export const Login = () => {
               <h1 className="text-white text-3xl font-extrabold  ">
                 IS BORN HERE.
               </h1>
-            </li>
-
-            <li>
-              {" "}
-              <div className="flex flex-row gap-2  mt-10">
-                <h1 className="text-white text-3xl font-bold ">
-                  Experience the Campus
-                </h1>
-                <h1 className="text-green-300 min-w-52 bg-white text-center text-3xl font-bold">
-                  Online
-                </h1>
-              </div>
             </li>
           </ul>
           <p className="text-center p-10 text-white">&copy; 2024 KOU inc.</p>

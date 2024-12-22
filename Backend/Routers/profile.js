@@ -1,7 +1,9 @@
-const express = require("express")
-const router = express.Router()
-const Posts = require("../Modules/Posts.js")
-const jwt = require("jsonwebtoken")
+import express from "express";
+import Posts from "../Modules/Posts.js";
+import jwt from "jsonwebtoken";
+
+const router = express.Router();
+
 
 
 
@@ -27,4 +29,4 @@ router.get("/",async (req,res) => {
 })
 
 
-module.exports = router
+export default router

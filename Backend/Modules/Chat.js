@@ -1,26 +1,19 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
-
-const ChatSchema = mongoose.Schema(
+const ChatSchema = mongoose.Schema({
+  Room: {
+    type: String,
+    required: true,
+  },
+  Chats: [
     {
-
-    Room:{
-        type:String,
-        required:true
+      Content: String,
+      id: String,
     },
-    Chats:[
-        {
-            Content:String,
-            id:String
-        }
-    ],
-    test:String
-
-
+  ],
+  test: String,
 });
 
+const Chat = mongoose.model("Chat", ChatSchema);
 
-const Chat = mongoose.model("Chat",ChatSchema);
-
-
-module.exports = Chat;
+export default Chat;

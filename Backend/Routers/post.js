@@ -1,9 +1,11 @@
-const express = require("express");
-const posts = require("../Modules/Posts.js");
+import express from "express";
+import posts from "../Modules/Posts.js";
+import { v4 as uuidv4 } from "uuid";
+import jwt from "jsonwebtoken";
+import Users from "../Modules/User.js";
+
 const router = express.Router();
-const { v4: uuidv4 } = require("uuid");
-const jwt = require("jsonwebtoken");
-const Users = require("../Modules/User.js");
+
 //create post
 router.post("/CreatePost", async (req, res) => {
   try {
@@ -66,4 +68,4 @@ router.get("/", async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;

@@ -1,12 +1,12 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const OtpSchema = mongoose.Schema({
   OTP: {
     type: String,
-    required:true,
+    required: true,
   },
 });
 
 const OTP = mongoose.model("OTP", OtpSchema);
 
-module.exports = OTP;
+export default OTP;

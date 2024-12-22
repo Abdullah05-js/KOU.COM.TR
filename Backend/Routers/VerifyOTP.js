@@ -1,9 +1,11 @@
-const express = require("express");
+import express from "express";
+import OtpSchema from "../Modules/OTP.js";
+import useGetOTP from "../Hooks/useGetOTP.js";
+import useBot from "../Hooks/useBot.js";
+import useSendMail from "../Hooks/useSendMail.js";
+
 const router = express.Router();
-const OtpSchema = require("../Modules/OTP.js");
-const useGetOTP = require("../Hooks/useGetOTP.js");
-const useBot = require("../Hooks/useBot.js");
-const useSendMail = require("../Hooks/useSendMail");
+
 
 
 router.post("/send-otp", async (req, res) => {
@@ -23,4 +25,4 @@ router.post("/send-otp", async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;

@@ -1,12 +1,15 @@
-const Users = require("../Modules/User.js");
-const express = require("express");
-const { v4: uuidv4 } = require("uuid");
-const jwt = require("jsonwebtoken");
-const router = express.Router();
-const { encrypt, decrypt } = require("node-encryption");
-const Room = require("../Modules/Rooms");
-const dotenv = require("dotenv");
+import Users from "../Modules/User.js";
+import express from "express";
+import { v4 as uuidv4 } from "uuid";
+import jwt from "jsonwebtoken";
+import { encrypt, decrypt } from "node-encryption";
+import Room from "../Modules/Rooms.js";
+import dotenv from "dotenv";
+
 dotenv.config();
+
+const router = express.Router();
+
 
 // /register
 router.post("/register", async (req, res) => {
@@ -101,4 +104,4 @@ router.post("/find", async (req, res) => {
   else res.status(200).json({ trigger: false });
 });
 
-module.exports = router;
+export default router;

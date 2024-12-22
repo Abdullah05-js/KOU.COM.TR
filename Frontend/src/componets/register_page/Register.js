@@ -109,6 +109,7 @@ export const Register = () => {
 
   useEffect(() => {
     const timeout = setTimeout(() => {
+      document.getElementById("animate").classList.add("animate-ping");
       if (Words === WordsArray[0]) {
         setWords(WordsArray[1]);
       } else if (Words === WordsArray[1]) {
@@ -116,8 +117,10 @@ export const Register = () => {
       } else if (Words === WordsArray[2]) {
         setWords(WordsArray[0]);
       }
+      setTimeout(() => {
+        document.getElementById("animate").classList.remove("animate-ping");
+      }, 1000);
     }, 3000);
-
     return () => {
       clearTimeout(timeout);
     };
@@ -217,7 +220,7 @@ export const Register = () => {
               {" "}
               <div className="flex flex-row gap-2  mt-10">
                 <h1 className="text-white text-3xl ">FOR A QUARTER CENTURY </h1>
-                <h1 className="text-green-300 min-w-52 bg-white text-center text-3xl font-bold ">
+                <h1 id="animate" className="text-green-300 min-w-52 bg-white text-center text-3xl font-bold ">
                   {Words}
                 </h1>
               </div>

@@ -1,10 +1,9 @@
-const express = require("express");
+import express from "express";
+import jwt from "jsonwebtoken";
+import Room from "../Modules/Rooms.js";
 
 const router = express.Router();
 
-const jwt = require("jsonwebtoken")
-
-const Room = require("../Modules/Rooms");
 
 
 // Read all 
@@ -42,4 +41,4 @@ router.get("/",async (req,res)=>{
 
 
 
-module.exports = router
+export default router

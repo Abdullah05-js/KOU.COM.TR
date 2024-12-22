@@ -1,5 +1,8 @@
-const nodemailer = require("nodemailer");
-require('dotenv').config({path:"../.env"});
+import nodemailer from "nodemailer";
+import dotenv from "dotenv";
+
+dotenv.config({ path: "../.env" });
+
 
 
 
@@ -44,4 +47,4 @@ console.log("--------------------------",info.messageId);
 
 }
 
-module.exports = useSendMail;
+export default useSendMail;
