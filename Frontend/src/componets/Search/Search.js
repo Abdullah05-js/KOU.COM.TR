@@ -6,17 +6,11 @@ import axios from "axios";
 import { useCallback } from "react";
 import { Skeleton } from "@nextui-org/skeleton";
 
+
 const Search = () => {
   const [Query, setQuery] = useState("");
   const [SearchList, setSearchList] = useState([]);
-  const [AllSearchList, setAllSearchList] = useState({
-    "abdullah han": [
-      { name: "abdullah han ", userID: "230229017" },
-      { name: "selçuk öz ", userID: "230229017" },
-      { name: "arif can güneş", userID: "230229017" },
-      { name: "sefa selim bayrak", userID: "230229017" },
-    ],
-  });
+  const [AllSearchList, setAllSearchList] = useState({});
   const [isFetching, setisFetching] = useState(false);
 
   // fetch fonksiyonu
@@ -34,9 +28,10 @@ const Search = () => {
         }
         }
       );
-      setSearchList(response.data);
+      
+      setSearchList(response.data.results);
       const newAllData = { ...AllSearchList };
-      newAllData[Query] = response.data;
+      newAllData[Query] = response.data.results;
       setAllSearchList(newAllData);
     } catch (error) {
       console.log(error);
@@ -55,16 +50,16 @@ const Search = () => {
     },
     [AllSearchList, GetSearchedData]
   );
-
+ 
   const returnList = SearchList.map((e) => {
     return (
       <Link to="https://x.com/jrgarciadev" size="sm">
         <User
           avatarProps={{
-            src: "https://avatars.githubusercontent.com/u/30373425?v=4",
+            src: e.img,
           }}
-          name={e.name}
-          description={<p className="text-gray-400">@{e.userID}</p>}
+          name={e.UserName}
+          description={<p className="text-gray-400">{e.email}</p>}
           className="text-white"
         />
       </Link>
@@ -104,6 +99,7 @@ const Search = () => {
 
   return (
     <div className="min-h-screen min-w-[672px] flex flex-col justify-center items-center gap-7">
+      
       <Input
         autoComplete="email"
         className="text-white min-w-56 max-w-96"

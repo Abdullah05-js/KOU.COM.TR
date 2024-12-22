@@ -10,33 +10,48 @@ dotenv.config();
 
 // /register
 router.post("/register", async (req, res) => {
-  const { UserName, email, password, img } = req.body;
+  try {
+    const { OTP, OtpId } = req.body;
+    const Target = await OtpSchema.findOne({ _id: OtpId });
+    console.log(Target);
+    if (OTP === Target.OTP) {
+      await OtpSchema.findOneAndDelete({ _id: OtpId });
+    } else {
+      res.status(404).json({ success: "unsuccess" });
+      return;
+    }
 
-  const id = uuidv4();
+    const { UserName, email, password, img } = req.body;
 
-  const d = new Date();
+    const id = uuidv4();
 
-  const date = `${d.getUTCDate()}-${d.getUTCMonth()}-${d.getUTCFullYear()}`;
+    const d = new Date();
 
-  const Password = encrypt(password, process.env.ENCRYPT);
+    const date = `${d.getUTCDate()}-${d.getUTCMonth()}-${d.getUTCFullYear()}`;
 
-  const Rooms = [];
+    const Password = encrypt(password, process.env.ENCRYPT);
 
-  const newRoom = new Room({ id, Rooms });
-  const newUsers = new Users({ UserName, email, Password, date, img });
-  await newUsers.save();
-  await newRoom.save();
+    const Rooms = [];
 
-  const token = jwt.sign({ id: newUsers._id }, process.env.JWT_KEY, {
-    expiresIn: "7h",
-  });
+    const newRoom = new Room({ id, Rooms });
+    const newUsers = new Users({ UserName, email, Password, date, img });
+    await newUsers.save();
+    await newRoom.save();
 
-  res.status(201).json({
-    token: token,
-    UserName: UserName,
-    email: email,
-    img,img
-  });
+    const token = jwt.sign({ id: newUsers._id }, process.env.JWT_KEY, {
+      expiresIn: "7h",
+    });
+
+    res.status(201).json({
+      token: token,
+      UserName: UserName,
+      email: email,
+      img,
+      img,
+    });
+  } catch (error) {
+    res.status(404).json({ success: error.message });
+  }
 });
 
 // login

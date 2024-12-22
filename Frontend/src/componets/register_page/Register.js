@@ -11,6 +11,7 @@ import axios from "axios";
 import { Spinner } from "@nextui-org/spinner";
 import { useNavigate } from "react-router-dom";
 import { ImageIcon } from "../../svgs/Icon";
+import { InputOtp } from "@nextui-org/input-otp";
 export const Register = () => {
   const WordsArray = ["ART", "SCİENCE", "TECHNOLOGY"];
 
@@ -33,59 +34,39 @@ export const Register = () => {
     img: "",
   });
 
-  const [Otp, setOtp] = useState({ otp: [], otpId: null, name: "" });
+  const [Otp, setOtp] = useState({ otp:"", otpId: null, name: "" });
 
-  const CreateAccount = async () => {
+  const [OTPSTATUS,setOTPSTATUS] = useState(false);
+
+
+  const checkOTP = async (newData) => {
+    setOTPSTATUS(true)
     try {
+    
+      setLoad(true);
       const response = await axios.post(
         "http://localhost:5000/api/users/register",
         {
-          UserName: UserData.email.slice(0, 9),
+          OtpId: Otp.otpId,
+          OTP: newData,
+          UserName: Otp.name,
           email: UserData.email,
           password: UserData.password1,
           img: UserData.img,
         }
       );
 
-      return response.data;
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
- 
-
-  const checkOTP = async (newData) => {
-    const inputs = document.querySelectorAll("input");
-    try {
-    
-      inputs.forEach((e) => {
-        e.setAttribute("disabled", "disabled");
-      });
-      setLoad(true);
-      const response = await axios.post(
-        "http://localhost:5000/api/OTP/verify-otp",
-        { OTP: newData.join(""), OtpId: Otp.otpId }
-      );
-
-      console.log(response.data);
       if (response.status === 200) {
-        const data = await CreateAccount();
-        localStorage.setItem("data", JSON.stringify(data));
+        localStorage.setItem("data", JSON.stringify(response.data));
         navigate("/home");
       } else {
         throw new Error("error happend while createing the account");
       }
-    } catch (error) {
-      console.log("am in ");
-      
-      setOtp({...Otp,otp: []})
-      inputs.forEach((e) => {
-        e.removeAttribute("disabled", "disabled")
-      });
+    } catch (error) {      
+      setOtp({...Otp,otp:""})
       console.log(error);
-     
     }finally{
+      setOTPSTATUS(false)
       setLoad(false)
     }
   };
@@ -93,20 +74,9 @@ export const Register = () => {
 
 
   const handleİnput = (e) => {
-    const inputs = document.querySelectorAll("input");
-
-    const controller = () => {
-      if (e.target.id !== "3") {
-        inputs[Number(e.target.id) + 1].focus();
-        setOtp({ ...Otp, otp: [...Otp.otp, e.target.value] });
-      } else {
-        const newData = { ...Otp, otp: [...Otp.otp, e.target.value] };
-        setOtp(newData);
-        checkOTP(newData.otp);
-      }
-    };
-    e.target.value.length > 1 ? (e.target.value = "") : controller();
-
+   
+        setOtp({...Otp,otp:e})
+        checkOTP(e);
     //better then all the tutorials on youtube lol made by ABDULLAH HAN
   };
   const validateEmail = (value) => value.match(/^[0-9]{9}@kocaeli.edu.tr$/i);
@@ -213,42 +183,13 @@ export const Register = () => {
       </span>
       <h1>OTP verification</h1>
       <h2 className="border-b-2  border-b-green-300 text-center">
-        Please check your email:{UserData.email} ,Welcome {Otp.name}
+        Please check your email:{UserData.email} , Welcome Mate {Otp.name}
       </h2>
 
       <div>
-        <input
-          type="number"
-          id="0"
-          value={Otp.otp[0]}
-          maxLength={"1"}
-          className="focus:border-white focus:outline-none focus:border-2  bg-black m-2 border-2 border-green-300 w-14 min-h-14 text-center"
-          onChange={handleİnput}
-        />
-        <input
-          type="number"
-          id="1"
-          value={Otp.otp[1]}
-          maxLength={"1"}
-          className="focus:border-white focus:outline-none focus:border-2  bg-black m-2 border-2 border-green-300 w-14 min-h-14 text-center"
-          onChange={handleİnput}
-        />
-        <input
-          type="number"
-          id="2"
-          value={Otp.otp[2]}
-          maxLength={"1"}
-          className="focus:border-white focus:outline-none focus:border-2  bg-black m-2 border-2 border-green-300 w-14 min-h-14 text-center"
-          onChange={handleİnput}
-        />
-        <input
-          type="number"
-          id="3"
-          value={Otp.otp[3]}
-          maxLength={"1"}
-          className="focus:border-white focus:outline-none focus:border-2  bg-black m-2 border-2 border-green-300 w-14 min-h-14 text-center"
-          onChange={handleİnput}
-        />
+
+       <InputOtp slot="4" color="success" variant="bordered" onComplete={(e) => handleİnput(e)} isDisabled={OTPSTATUS} />
+
       </div>
       {Load ? Skeleton_model() : ""}
     </div>
@@ -385,6 +326,7 @@ export const Register = () => {
             </li>
 
             <li>
+           
               <Input
                 isRequired
                 className="text-white"

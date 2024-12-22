@@ -5,7 +5,7 @@ const { v4: uuidv4 } = require("uuid");
 const jwt = require("jsonwebtoken");
 const Users = require("../Modules/User.js");
 //create post
-router.post("/", async (req, res) => {
+router.post("/CreatePost", async (req, res) => {
   try {
     const { token,content, img, Role} = req.body;
     const decode = jwt.verify(token, process.env.JWT_KEY);
@@ -33,10 +33,11 @@ router.post("/", async (req, res) => {
   } catch (error) {
      console.log("hatta", error.message, "hatta");
     res.status(500).json({ error: error.message });
+    return;
   }
 });
 
-//Read all
+//Read Post
 router.get("/", async (req, res) => {
   try {
     const token = req.query.token;

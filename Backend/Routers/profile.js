@@ -17,7 +17,7 @@ router.get("/",async (req,res) => {
     const UserPosts =await Posts.find({author:decode.id})
     console.log("decode",UserPosts)
     res.status(200).json({data:UserPosts.slice(pageNumber,pageNumber+process.env.LIMIT),nextPage:pageNumber + process.env.LIMIT < UserPosts.length ? pageNumber + process.env.LIMIT : null,})
-
+   
  }catch(error){
     console.log(error)
     res.status(500).send("relogin")

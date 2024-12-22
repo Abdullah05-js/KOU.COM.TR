@@ -33,7 +33,7 @@ export const CreatePost = ({ setPostsArray }) => {
       const data = JSON.parse(localStorage.getItem("data"));
       try {
         SetLoad(true);
-        const Response = await axios.post("http://localhost:5000/api/post", {
+        const Response = await axios.post("http://localhost:5000/api/post/CreatePost", {
           token: data.token,
           content: TextValue,
           img: FilesApi[0],

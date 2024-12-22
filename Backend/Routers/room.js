@@ -15,7 +15,6 @@ router.get("/",async (req,res)=>{
 
 
         const token = req.query.token;
-        console.log("the tone ",req.query);
 
 
         const decode  = jwt.verify(token,process.env.JWT_KEY) 

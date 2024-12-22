@@ -11,7 +11,7 @@ router.get("/", async (req, res) => {
 
     const results = await Users.find({ $text: { $search: Query } }); // to get all the usernames matchs with the query (if you pay attention we indexed the username)
     //  const results = await Users.find({ UserName: {$regex: Query, $options: "i"} });
-
+    console.log(results)
     res.status(200).json({
       results,
     });
