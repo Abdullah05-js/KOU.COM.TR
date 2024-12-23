@@ -16,6 +16,27 @@ export const Register = () => {
   const WordsArray = ["ART", "SCİENCE", "TECHNOLOGY"];
 
   const navigate = useNavigate();
+  
+  useEffect(() => {
+
+    const Controler = async () => {
+      const data = localStorage.getItem("data");
+
+      const User = JSON.parse(data);
+      console.log(User);
+
+      const response = await axios.post(
+        "http://localhost:5000/api/users/find",
+        { token: User.token }
+      );
+      console.log("fdvddfvdfv", response.data.trigger);
+      return response.data.trigger 
+    };
+
+
+ Controler() && navigate("/home")
+
+}, []);
 
   const [isVisible, setIsVisible] = useState(false);
 

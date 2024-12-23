@@ -12,7 +12,31 @@ import { Spinner } from "@nextui-org/spinner";
 import { useNavigate } from "react-router-dom";
 import photo from "../../images/koubook.webp";
 
+
 export const Login = () => {
+
+  const navigate = useNavigate();
+  
+  useEffect(() => {
+
+    const Controler = async () => {
+      const data = localStorage.getItem("data");
+
+      const User = JSON.parse(data);
+      console.log(User);
+
+      const response = await axios.post(
+        "http://localhost:5000/api/users/find",
+        { token: User.token }
+      );
+      return response.data.trigger 
+    };
+
+
+ Controler() && navigate("/home")
+
+}, []);
+
   const WordsArray = ["ART", "SCİENCE", "TECHNOLOGY"];
 
   const [isVisible, setIsVisible] = useState(false);
@@ -27,7 +51,7 @@ export const Login = () => {
 
   const validateEmail = (value) => value.match(/^[0-9]{9}/i);
 
-  const navigate = useNavigate();
+
 
   const isInvalid = React.useMemo(() => {
     if (UserData.email === "") return false;
