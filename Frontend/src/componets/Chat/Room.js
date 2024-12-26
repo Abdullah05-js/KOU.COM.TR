@@ -19,6 +19,8 @@ export const Room = () => {
     //   chats:["3242","23552","2532525"]
     // }
 
+    
+
 
     useEffect( ()=> {
 
@@ -50,7 +52,7 @@ export const Room = () => {
 
    const PorfileBoxList = RoomArray.map((e,index)=>{
       
-       return <PersonBox Key={e.Rooms[index]}  />
+       return <PersonBox Key={e.Rooms[index].id} UserID={e.Rooms[index].party} />
     })
 
 

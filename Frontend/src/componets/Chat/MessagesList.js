@@ -4,7 +4,7 @@ import "./style.css";
 import { socket } from "./socket";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-let cancelAxios = null;
+
 export const MessagesList = () => {
   const [messages, setmessages] = useState([{ Content: "", id: "" }]);
   const [ChatList, setChatList] = useState({

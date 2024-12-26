@@ -1,10 +1,9 @@
 import React from "react";
-// import Ferdi from "/home/thodex/Desktop/website/Frontend/src/images/GSIVyYDWIAAXS5m.jpeg"
 import { Avatar } from "@nextui-org/avatar";
 import { MessagesList } from "./MessagesList";
-
 import { Messageİnput } from "./Messageİnput";
 
+//we need to transfer room request to app so this componet and person box get the user name and img
 export const Chat = () => {
   return (
     <div className="flex flex-col justify-between min-w-[672px] h-screen">

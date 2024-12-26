@@ -84,7 +84,8 @@ router.post("/login", async (req, res) => {
   }
 });
 
-// find user
+// check token
+
 
 router.post("/find", async (req, res) => {
   let trigger = true;
@@ -100,5 +101,44 @@ router.post("/find", async (req, res) => {
   if (trigger) res.status(200).json({ trigger: true });
   else res.status(200).json({ trigger: false });
 });
+
+
+
+router.post("/find", async (req, res) => {
+  let trigger = true;
+
+  jwt.verify(req.body.token, process.env.JWT_KEY, (err, decode) => {
+    console.log("am in", err);
+
+    if (err) {
+      trigger = false;
+    }
+  });
+
+  if (trigger) res.status(200).json({ trigger: true });
+  else res.status(200).json({ trigger: false });
+});
+
+
+router.get("getUser",async (req,res) => {
+try {
+
+  const {token,id} = req.query
+
+  const decode = jwt.verify(token,process.env.JWT_KEY)
+
+  const {UserName,img} = await Users.findOne({
+    _id:id
+  })
+
+  res.status(200).json({
+    UserName,
+    img
+  })
+
+} catch (error) {
+  res.status(404)
+}
+})
 
 export default router;

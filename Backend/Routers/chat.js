@@ -9,17 +9,21 @@ const router = express.Router();
 
 router.post("/", async (req, res) => {
   try {
-    const { token } = req.body;
+    const { token , party} = req.body;
 
     const decode = jwt.verify(token, process.env.JWT_KEY);
 
     const Chats = [];
 
-    const newData = new Chat({ Chats });
+    const newData= new Chat({ Chats });
     await Rooms.findOneAndUpdate(
       { id: decode.id },
-      { $push: { Rooms: newData._id } }
+      { $push: { Rooms: {id:newData._id,Party:party} } }
     );
+    await Rooms.findOneAndUpdate(
+      {id:party},
+      {$push : {Rooms:{id:newData._id,party:decode.id}}}
+    )
     await newData.save();
 
     res.status(200).json(newData);
