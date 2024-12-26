@@ -10,14 +10,14 @@ export const PersonBox = ({Key}) => {
 const navigate = useNavigate()
 
   const handleChat = ()=>{
-    socket.emit("join-roon",{room:Key})
+    socket.emit("join-room",{room:Key})
     navigate(`/chat/${Key}`)
 
   }
 
 
   return (
-    <div onClick={handleChat} className='min-h-24 flex flex-col justify-center items-center  min-w-80 overflow-auto cursor-pointer border-2 border-green-500 rounded-xl'>
+    <button onClick={handleChat} className='min-h-24 flex flex-col justify-center items-center  min-w-80 overflow-auto cursor-pointer border-2 border-green-500 rounded-xl'>
 
 
             <div className='flex flex-row justify-center items-center gap-2'>
@@ -28,7 +28,7 @@ const navigate = useNavigate()
 
             <h2 className='text-center text-white'>`"+${"lan nerdesin  gel halısahaya"}+"`</h2>
             
-    </div>
+    </button>
   )
 }
 

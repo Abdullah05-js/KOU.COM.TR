@@ -6,7 +6,7 @@ import axios from 'axios'
 
 
 
-let cancelAxios = null
+
 export const Room = () => {
 
      const [RoomArray,setRoomArray] = useState([{id:"4353535",Rooms:[]}])
@@ -23,15 +23,10 @@ export const Room = () => {
     useEffect( ()=> {
 
       const localToken = JSON.parse(localStorage.getItem("data")).token
-
+      const Controler = new AbortController();
       console.log("token",localToken)
                  
-     axios.get(`http://localhost:5000/api/rooms` , {params:{"token":localToken}},
-      {
-        cancelToken: new axios.CancelToken((c)=> {
-          cancelAxios = c
-        })
-      }
+     axios.get(`http://localhost:5000/api/rooms` , {params:{"token":localToken},signal:Controler.signal}
     )
     .then((Response)=>{
          
@@ -47,7 +42,7 @@ export const Room = () => {
    
     return () => {
       console.log("cancleing ")
-      cancelAxios()
+      Controler.abort();
     }
                  
  

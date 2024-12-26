@@ -22,8 +22,6 @@ router.get("/",async (req,res)=>{
         const RoomsData = await Room.find({id:decode.id});
 
 
-        console.log(RoomsData);
-
         res.status(200).json(RoomsData);
         
 

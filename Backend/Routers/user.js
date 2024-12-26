@@ -26,8 +26,6 @@ router.post("/register", async (req, res) => {
 
     const { UserName, email, password, img } = req.body;
 
-    const id = uuidv4();
-
     const d = new Date();
 
     const date = `${d.getUTCDate()}-${d.getUTCMonth()}-${d.getUTCFullYear()}`;
@@ -35,9 +33,8 @@ router.post("/register", async (req, res) => {
     const Password = encrypt(password, process.env.ENCRYPT);
 
     const Rooms = [];
-
-    const newRoom = new Room({ id, Rooms });
     const newUsers = new Users({ UserName, email, Password, date, img });
+    const newRoom = new Room({id:newUsers._İd, Rooms });
     await newUsers.save();
     await newRoom.save();
 
