@@ -16,7 +16,7 @@
 
 - **Frontend**: React, React Query
 - **Backend**: Express.js
-- **Database**: MongoDB,Mongoose
+- **Database**: MongoDB,Mongoose,AWS S3
 - **Authentication**: JWT
 - **Real time data**: socket.io,
 ## Setup Instructions
